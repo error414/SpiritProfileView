@@ -1,0 +1,36 @@
+{block content}
+<div class="container">
+	<h1 n:block=title>Spirit profile <sub>aplha</sub></h1>
+	<div class="span-17 top">
+		{control searchProfile begin}
+			<div class="span-17 top">
+				{$control['searchProfile']['text']->control}
+				{$control['searchProfile']['sub']->label} {$control['searchProfile']['sub']->control}
+			</div>
+		{control searchProfile end}
+	</div>
+
+	{if $control['searchProfile']->isSubmitted()}
+		{if count($profiles) == 0}
+			<div class="span-17 top">
+				No result
+			</div>
+		{else}
+			<div class="span-17 top">
+				{foreach $profiles as $profile}
+					<div class="span-10 colborder">
+						{$profile->name} ({$profile->version})
+					</div>
+					<div class="span-4 colborder last">
+						<a href="{link Profile:show, id => $profile->id}">show</a>
+					</div>
+				{/foreach}
+			</div>
+		{/if}
+	{/if}
+
+	<div class="span-17 top">
+		<hr />
+		<a href="{link Profile:upload}">upload</a>
+	</div>
+</div>

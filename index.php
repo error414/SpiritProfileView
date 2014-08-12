@@ -1,121 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
 <?php
 
 
-define('SPIRIT_APP', '/Users/petrcada/Documents/workspace');
+###############################################################################################
+if(!isset($_GET['hash']) || $_GET['hash'] != md5('error414')){
+	die('unknow credentials');
+}
 
-define('DIFF',      SPIRIT_APP . '/settigs-mobile/settings/src/com/spirit/DiffActivity.java');
-define('PROFILE',   SPIRIT_APP . '/settigs-mobile/settings/src/com/helpers/DstabiProfile.java');
-############################################################################################################
-
-$profileFile = file_get_contents(PROFILE);
-preg_match_all('/profileMap\.put\(\"([^\"]*)\".*new ProfileItem\(([^\,]*)/', $profileFile , $profileItemList);
-
-$profileItemList = array_combine($profileItemList[1],  $profileItemList[2]);
-
-############################################################################################################
-
-$diffFile = file_get_contents(DIFF);
-preg_match_all('/\)\)\{([^\}]*)\}/', $diffFile , $diffItemList);
-
-unset($diffItemList[0]);
-$diffItemList = $diffItemList[1];
-
-preg_match_all('/diffItem\.getLabel\(\)\.equals\(\"([^\"]*)\"\)/', $diffFile , $diffItemNames);
-unset($diffItemNames[0]);
-$diffItemNames = $diffItemNames[1];
-
-$diffItemList = array_combine($diffItemNames, $diffItemList);
-unset($diffItemNames);
-############################################################################################################
-
-$configuration = array();
-
-foreach($diffItemList as $name => $item){
-	$configuration[$profileItemList[$name]] = array(
-		'label'         => NULL,
-		'name'          => $name,
-		'type'          => NULL,
-		'add'           => 0,
-		'discount'      => 0,
-		'translate'     => NULL,
-
-	);
+$url = isset($_GET['url']) ? $_GET['url'] : 'ee';
 
 
-	//label
-	preg_match_all('/diffItem\.setLabel\((.*)\)/', $item, $label);
-	unset($label[0]);
-	$label = $label[1][0];
+$file = file_get_contents($url);
+if(!$file){
+	die('file not found');
+}
+
+$profile = str_split($file);
 
 
-	preg_match_all('/R\.string\.[^)]*|textSeparator/', $item, $label);
-	$label = $label[0];
-
-	$labelBuffer = array();
-	foreach($label as $key => $labelItem){
-		if($labelItem != 'R.string.no' && $labelItem != 'R.string.yes'){
-			$labelBuffer[$key] = $labelItem;
-		}
-	}
-
-	$label = $labelBuffer;
-
-
-	$configuration[$profileItemList[$name]]['label'] = $label;
-
-	$clearItem = str_replace("\n", "", $item);
-
-	//value #########################################
-
-	//selectBox
-	if(strpos($item, 'getValueForSpinner') !== false){
-		$configuration[$profileItemList[$name]]['type'] = 'select';
-		//String[] values = getResources().getStringArray(R.array.position_values);
-		preg_match_all('/R\.array\.[^)]*/', $item, $select);
-		$select = $select[0][0];
-		$configuration[$profileItemList[$name]]['select'] = $select;
-
-	// checkBox
-	}elseif(strpos($item, 'getValueForCheckBox') !== false) {
-		$configuration[$profileItemList[$name]]['type'] = 'check';
-	// seekbar
-	}elseif(strpos($item, 'getValueInteger') !== false) {
-		if(strpos($item, '+')!== false) {
-			preg_match_all('/\.getValueInteger\(\) \+ ([0-9]*)\)/', $item, $add);
-			unset($add[0]);
-			$add = $add[1][0];
-
-
-			$configuration[$profileItemList[$name]]['add'] = $add;
-		}
-
-		if(strpos($item, '-')!== false) {
-			if(preg_match_all('/\.getValueInteger\(\) \- ([0-9]*)\)/', $item, $discount)) {
-				unset( $discount[0] );
-				$discount = $discount[1][0];
-
-
-				$configuration[ $profileItemList[ $name ] ]['discount'] = $discount;
-			}
-		}
-
-		if(strpos( $item, 'translate')!== false) {
-			preg_match_all('/new ([^\(]*)/', $item, $translate);
-			unset($translate[0]);
-			$translate = $translate[1][0];
-
-			$configuration[$profileItemList[$name]]['translate'] = $translate;
-		}
-
-
-		$configuration[$profileItemList[$name]]['type'] = 'seek';
-	}
+try {
+	$parser = new ProfileParser( $profile );
+	$parsed = $parser->getParsedProfile();
+}catch(Exception $e){
+	die($e->getMessage());
 }
 
 
-//echo(serialize($configuration));
-var_dump($configuration);
-
-
-
-
+echo '<table>';
+	foreach($parsed as $item){
+		echo '<tr>';
+		echo "<td>$item[label]</td>";
+		if(isset($item['min']) && $item['min'] !== NULL && $item['min'] !== ''){
+			echo "<td>$item[value] ($item[min] <-> $item[max])</td>";
+		}else{
+			echo "<td>$item[value]</td>";
+		}
+		echo '</tr>';
+	}
+echo '</table>';
+?>
+</body>
