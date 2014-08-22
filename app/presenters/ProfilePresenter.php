@@ -21,9 +21,11 @@ class ProfilePresenter extends BasePresenter
 	{
 		$this->template->profile = $this->profileModel->getById($this->getParameter('id'));
 
-		$parser = new ProfileParser( $this->template->profile->profile );
+		$parser = new ProfileParser( $this->template->profile->profile, $this->lang);
 		$this->template->parsed = $parser->getParsedProfile();
 		$this->template->parser = $parser;
+		$this->template->id = $this->profileModel->getById($this->getParameter('id'));
+
 	}
 
 

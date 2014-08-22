@@ -5,9 +5,14 @@
 	<br>
 	<br>
 	<h2>{$profile->name} ({$profile->version})</h2>
+
+	<div class="span-20">
+		<h4>BBCode</h4>
+		[profile=http://error414.com{link show, id => $id}]{$profile->name} ({$profile->version})[/profile]
+	</div>
+
 	<div class="span-20 top">
 		<a href="{link :Homepage:default}"> <<< back <<< </a>
-
 		{foreach $parsed as $nameGroup => $group}
 			<h3 data-path="{$nameGroup}"><?=$parser->getText($nameGroup)?></h3>
 			<table data-path="{$nameGroup}" class="res">
@@ -35,7 +40,8 @@ $(document).ready(
 				$(this).attr('data-path').contains('subtrim') ||
 				$(this).attr('data-path').contains('cyclic_ring_range') ||
 				$(this).attr('data-path').contains('servo_travel_correction') ||
-				$(this).attr('data-path').contains('rudder_end_points_no_break')
+				$(this).attr('data-path').contains('rudder_end_points_no_break') ||
+				$(this).attr('data-path').contains('channels')
 				 );
 		}
 		).hide();

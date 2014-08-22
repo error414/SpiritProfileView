@@ -11,6 +11,7 @@ use Nette;
  */
 abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
+	public $lang = 'cs';
 
 	/** @var ProfileModel */
     protected $profileModel;
@@ -24,6 +25,15 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
             throw new \Nette\InvalidStateException('ProfileModel Model has already been set');
         }
         $this->profileModel = $profileModel;
+    }
+
+    public function startup(){
+    	parent::startup();
+    }
+
+    public static function getPersistentParams()
+    {
+        return array('lang');
     }
 
 }

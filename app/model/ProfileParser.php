@@ -12,13 +12,16 @@ class ProfileParser{
 
 	private $parsed = array();
 
+	private $lang = 'cs';
+
 	private $configurator;
 
 	/**
 	 * @param $profile
 	 */
-	public function __construct($profile){
+	public function __construct($profile, $lang){
 
+		$this->lang = $lang;
 		$profile = str_split($profile);
 		foreach($profile as $key => $item){
 			$this->profile[$key + 1] = hexdec(bin2hex($item));
@@ -45,19 +48,19 @@ class ProfileParser{
 	}
 
 	public function getText($id){
-		return $this->configurator->getStringById($id);
+		return $this->configurator->getStringById($id, $this->lang);
 	}
 
 	/**
 	 * @throws Exception
 	 */
 	private function parse(){
-		$this->parsed['version']['label'] =  $this->configurator->getStringById('version');
+		$this->parsed['version']['label'] =  $this->configurator->getStringById('version', $this->lang);
 		$this->parsed['version']['value'] =  $this->configurator->getVersion();
 		$this->parsed['version']['path'] = 'version';
 
 		foreach($this->configurator->getConfigForProfile() as $position => $config) {
-			$label = array_map( array( $this->configurator, 'getStringById' ), $config['label'] );
+			$label = array_map( array( $this, 'getText' ), $config['label'] );
 			$this->parsed[$config['name']]['label'] = join( ' ', $label );
 			$this->parsed[$config['name']]['path'] = join( ' ', $config['label'] );
 			$this->parsed[$config['name']]['min']   = $config['min'];
@@ -65,12 +68,12 @@ class ProfileParser{
 
 			//selectBox
 			if ( $config['type'] == 'select' ) {
-				$this->parsed[$config['name']]['value'] = $this->configurator->getSelectText($config['select'],  $this->profile[ $position ]);
+				$this->parsed[$config['name']]['value'] = $this->configurator->getSelectText($config['select'],  $this->profile[ $position ], $this->lang);
 			}
 
 			//checkBox
 			if ( $config['type'] == 'check' ) {
-				$this->parsed[$config['name']]['value'] = ( $this->profile[ $position ] == 49 ? $this->configurator->getStringById('yes') : $this->configurator->getStringById('no') );
+				$this->parsed[$config['name']]['value'] = ( $this->profile[ $position ] == 49 ? $this->configurator->getStringById('yes', $this->lang) : $this->configurator->getStringById('no',$this->lang) );
 			}
 
 
