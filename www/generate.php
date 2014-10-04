@@ -15,7 +15,6 @@ $profileItemList = array_combine($profileItemListBuffer[1],  $profileItemListBuf
 $profileItemMin = array_map('trim', array_combine($profileItemListBuffer[1],  $profileItemListBuffer[3]));
 $profileItemMax = array_map('trim', array_combine($profileItemListBuffer[1],  $profileItemListBuffer[4]));
 
-
 ############################################################################################################
 
 $diffFile = file_get_contents(DIFF);

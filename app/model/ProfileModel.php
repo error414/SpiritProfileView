@@ -28,10 +28,9 @@ class ProfileModel extends BaseModel
 			//insert
 		} else {
 			unset($values['id']);
-			$this->database->table(self::TABLE_NAME)->insert($values);
+			return $this->database->table(self::TABLE_NAME)->insert($values);
 		}
 
-		return $this->database->getInsertId();
 	}
 
 	/**

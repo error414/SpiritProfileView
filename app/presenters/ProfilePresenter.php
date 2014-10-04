@@ -28,6 +28,23 @@ class ProfilePresenter extends BasePresenter
 
 	}
 
+	public function renderByUrl(){
+		$phpBB = new \curl_phpbb('http://spirit-system.com/phpBB3/');
+
+		$url = $this->getParameter('url');
+		$phpBB->login('error414', 'jklm258');
+
+
+		$fileContent = $phpBB->read($url);
+
+		$parser = new ProfileParser( $fileContent, $this->lang);
+		$this->template->parsed = $parser->getParsedProfile();
+		$this->template->parser = $parser;
+		$this->template->name = 'test';
+
+		$phpBB->logout();
+	}
+
 
 	/**
 	 * @return Nette\Application\UI\Form
@@ -59,7 +76,7 @@ class ProfilePresenter extends BasePresenter
 		);
 
 		try {
-			$parser = new ProfileParser($values['profile']->getContents());
+			$parser = new ProfileParser($values['profile']->getContents(), $this->lang);
 			if(!$parser->isValid()){
 				$this->flashMessage('Unsupported version: ' .$parser->getVersion(), 'error');
 				return;
