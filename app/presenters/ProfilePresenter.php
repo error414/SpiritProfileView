@@ -99,6 +99,21 @@ class ProfilePresenter extends BasePresenter
 		$this->terminate();
 	}
 
+	public function renderDownload(){
+		$profile = $this->profileModel->getById($this->getParameter('id'));
+
+		header('Content-Description: File Transfer');
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename='.$profile->name);
+		header('Content-Transfer-Encoding: binary');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate');
+		header('Pragma: public');
+
+		echo $profile->profile;
+		$this->terminate();
+	}
+
 
 
 }
