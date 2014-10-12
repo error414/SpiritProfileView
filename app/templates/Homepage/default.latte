@@ -1,6 +1,7 @@
 {block content}
 <div class="container">
 	<a class="homelink" href="{link :Homepage:default}"><h1 n:block=title>Spirit profile <sub>aplha</sub></h1></a>
+
 	<div class="span-17 top">
 		{control searchProfile begin}
 			<div class="span-17 top">
@@ -9,6 +10,7 @@
 			</div>
 		{control searchProfile end}
 	</div>
+
 
 	{if $control['searchProfile']->isSubmitted()}
 		{if count($profiles) == 0}

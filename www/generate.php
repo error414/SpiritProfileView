@@ -1,10 +1,13 @@
 <?php
+if(!isset($_GET['version'])){
+	die('version must be set');
+}
 
 
-define('SPIRIT_APP', '/Users/petrcada/Documents/android-projects');
-
-define('DIFF',      SPIRIT_APP . '/settigs-mobile/settings/src/com/spirit/DiffActivity.java');
-define('PROFILE',   SPIRIT_APP . '/settigs-mobile/settings/src/com/helpers/DstabiProfile.java');
+define('SPIRIT_APP', '/Users/petrcada/Documents/android-projects/');
+define('TARGET', '../app/configuration/');
+define('DIFF',      SPIRIT_APP . 'settigs-mobile/settings/src/com/spirit/DiffActivity.java');
+define('PROFILE',   SPIRIT_APP . 'settigs-mobile/settings/src/com/helpers/DstabiProfile.java');
 ############################################################################################################
 
 $profileFile = file_get_contents(PROFILE);
@@ -120,10 +123,21 @@ foreach($diffItemList as $name => $item){
 	}
 }
 
-
-echo(serialize($configuration));
-//var_dump($configuration);
-
+$targetDir = TARGET . 'configuration_'. $_GET['version'] . '/';
+$targetDirPrew = TARGET . 'configuration_'. ($_GET['version'] - 1) . '/';
 
 
+if(!is_dir($targetDir)){
+	mkdir($targetDir);
+}
 
+file_put_contents($targetDir . 'configurator.php', serialize($configuration));
+
+
+copy(SPIRIT_APP . '/settigs-mobile/settings/res/values/strings.xml', $targetDir . '/strings_en.xml');
+copy(SPIRIT_APP . '/settigs-mobile/settings/res/values-cs/strings.xml', $targetDir . '/strings_cs.xml');
+
+
+copy($targetDirPrew . '/ServoCorrectionProgressExTranslate.php', $targetDir . '/ServoCorrectionProgressExTranslate.php');
+copy($targetDirPrew . '/StabiPichProgressExTranslate.php', $targetDir . '/StabiPichProgressExTranslate.php');
+copy($targetDirPrew . '/StabiSenzivityProgressExTranslate.php', $targetDir . '/StabiSenzivityProgressExTranslate.php');

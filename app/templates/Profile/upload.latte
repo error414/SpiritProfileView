@@ -1,8 +1,27 @@
 {block content}
 <div class="container">
 	<a class="homelink" href="{link :Homepage:default}"><h1 n:block=title>Spirit profile <sub>aplha</sub></h1></a>
-	<div class="span-17 top">
+	<div class="span-12 top">
 		{control uploadProfile}
-		<a href="{link :Homepage:default}"> <<< back <<< </a>
+		{*<a href="{link :Homepage:default}"> <<< back <<< </a>*}
 	</div>
+{*
+	<div class="span-12">
+		<form method="get" action="{link Profile:url}">
+			<table>
+				<tr>
+					<th><label>Name:</label></th>
+					<td><input type="text" name="name" style="width: 315px"></td>
+				</tr>
+				<tr>
+					<th><label>Url:</label></th>
+					<td><input type="text" name="url" style="width: 315px"></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td><input type="submit" >
+				<tr>
+		</form>
+	</div>
+	*}
 </div>

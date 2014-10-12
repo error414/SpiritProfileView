@@ -14,6 +14,7 @@ class HomepagePresenter extends BasePresenter
 
 	public function renderDefault()
 	{
+		$this->forward('Profile:upload');
 	}
 
 	public function createComponentSearchProfile(){

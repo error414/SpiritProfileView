@@ -85,7 +85,7 @@ class ProfilePresenter extends BasePresenter
 
 			$toInsert[ProfileModel::COLUMN_VERSION] = $parser->getVersion();
 
-			$id = $this->profileModel->save($toInsert);
+			$row = $this->profileModel->save($toInsert);
 			$this->flashMessage('Profile was saved', 'info');
 
 		}catch(\Exception $e){
@@ -93,8 +93,8 @@ class ProfilePresenter extends BasePresenter
 			return;
 		}
 
-		if($id > 0) {
-			$this->redirect('Show', array('id' => $id));
+		if($row[ProfileModel::COLUMN_ID] > 0) {
+			$this->redirect('Show', array('id' => $row[ProfileModel::COLUMN_ID]));
 		}
 		$this->terminate();
 	}

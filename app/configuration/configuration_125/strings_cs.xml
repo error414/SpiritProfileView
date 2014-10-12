@@ -2,7 +2,7 @@
 <resources>
     <string name="xxx">xxxx</string>
     <string name="settings_name_space">settings_name_space</string>
-    <string name="author_name">Spirit System mobile settings\nPetr Čada - error414@error414.com\nTomáš Jędrzejek - tomasj@spirit-system.com \n \n sestavení: 06.08.14</string>
+    <string name="author_name">Spirit System mobile settings\nPetr Čada - error414@error414.com\nTomáš Jędrzejek - tomasj@spirit-system.com \n \n sestavení: 27.08.14</string>
     <string name="author">Autoři</string>
     <string name="credits">Zásluhy</string>
     
@@ -22,8 +22,10 @@
     <string name="load_profile">Načíst profil</string>
     <string name="save_profile">Uložit profil</string>
     <string name="save_profile_to_unit">Uložit profil do jednotky</string>
-    <string name="profile_saved">Profil uložen</string>
-    <string name="file_manager">File manager</string>
+    <string name="profile_saved_file">Nastavení uloženo do souboru</string>
+    <string name="profile_saved">Nastavení uloženo</string>
+    <string name="profile_load">Nastavení bylo nahráno</string>
+    <string name="file_manager">Správce souborů</string>
     <string name="file_not_found">Soubor nenalezen</string>
     <string name="bt_not_enabled_leaving">Bluetooth není povolen, ukončuji..</string>
     <string name="choose_device">Vyberte zařízení</string>
@@ -97,8 +99,7 @@
     <string name="reg_i">I</string>
     <string name="reg_d">D</string>
     <string name="pirouette_consistency">Držení piruet</string>
-    <string name="rear_up">Elevator pitching-up compensation</string>
-    <string name="filter">Sensor filr</string>
+    <string name="filter">Sensor filtr</string>
     <string name="gyro">Gyro</string>
     
     <string name="diag_rudder">Vrtulka</string>
@@ -155,13 +156,15 @@
 
 	<string name="profile_diff">Provedené změny</string>
 	<string name="channels">Kanály</string>
-	<string name="throttle">Throttle</string>
+	<string name="throttle">Plyn</string>
 	<string name="gyro_gain">Zisk vrtulky</string>
 	<string name="banks">Banky</string>
-	<string name="choose_bank">Choose bank</string>
+	<string name="choose_bank">Vyberte banku</string>
 	<string name="bank_short_code">B</string>
 	<string name="channelColision">Nastala kolize %1$s. kanalu, zvolte prosím odlišný.</string>
-	
+    <string name="signal_processing">Zpracování signálu</string>
+    <string name="advance">Rozšířené</string>
+
 	<string-array name="bank_values">
         <item>Bank 0</item>
         <item>Bank 1</item>
@@ -375,4 +378,7 @@
      <string name="first_choose_directory">Prvně vyberte adresář</string>
      <string name="log_from_previous_flight">Zobrazen i log z předchozího letu! \n Log bude automaticky vymazán.</string>
      <string name="want_save_item">Přejete si uložit nastavení?</string>
+
+    <string name="bank_change_after_connect">Aktuální banka byla přepnuta na <b>Bank 0</b>.\nZměna banky přes vysílač je vypnuta dokud je software připojen.</string>
+    <string name="stabi_piruete_warning">Před použitím režimu stabilizace či záchrany se ujistěte, že je optimalizace piruet nakonfigurována správně jinak tyto režimy nebudou fungovat korektně!</string>
 </resources>
