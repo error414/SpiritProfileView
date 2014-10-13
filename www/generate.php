@@ -138,6 +138,6 @@ copy(SPIRIT_APP . '/settigs-mobile/settings/res/values/strings.xml', $targetDir 
 copy(SPIRIT_APP . '/settigs-mobile/settings/res/values-cs/strings.xml', $targetDir . '/strings_cs.xml');
 
 
-copy($targetDirPrew . '/ServoCorrectionProgressExTranslate.php', $targetDir . '/ServoCorrectionProgressExTranslate.php');
-copy($targetDirPrew . '/StabiPichProgressExTranslate.php', $targetDir . '/StabiPichProgressExTranslate.php');
-copy($targetDirPrew . '/StabiSenzivityProgressExTranslate.php', $targetDir . '/StabiSenzivityProgressExTranslate.php');
+//copy($targetDirPrew . '/ServoCorrectionProgressExTranslate.php', $targetDir . '/ServoCorrectionProgressExTranslate.php');
+//copy($targetDirPrew . '/StabiPichProgressExTranslate.php', $targetDir . '/StabiPichProgressExTranslate.php');
+//copy($targetDirPrew . '/StabiSenzivityProgressExTranslate.php', $targetDir . '/StabiSenzivityProgressExTranslate.php');

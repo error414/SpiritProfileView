@@ -11,7 +11,7 @@ use Nette;
  */
 abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
-	public $lang = 'cs';
+	public $lang = 'en';
 
 	/** @var ProfileModel */
     protected $profileModel;
