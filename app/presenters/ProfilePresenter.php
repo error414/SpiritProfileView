@@ -65,6 +65,11 @@ class ProfilePresenter extends BasePresenter
 		return $form;
 	}
 
+	/**
+	 *
+	 * @param $form
+	 * @throws Nette\Application\AbortException
+	 */
 	public function uploadFormSucceeded($form)
 	{
 		$values = $form->getValues();
