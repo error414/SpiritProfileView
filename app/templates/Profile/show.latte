@@ -24,7 +24,7 @@
 					{if isset($item['min']) && $item['min'] !== NULL && $item['min'] !== ''}
 						<td><strong>{$item['value']}</strong></td><td> ({$item['min']} <-> {$item['max']})</td>
 					{else}
-						<td><strong>{$item['value']}<strong></td>&nbsp;<td>
+						<td><strong>{$item['value']}</strong></td><td>&nbsp;</td>
 					{/if}
 					</tr>
 				{/foreach}
@@ -43,10 +43,11 @@ $(document).ready(
 				$(this).attr('data-path').contains('cyclic_ring_range') ||
 				$(this).attr('data-path').contains('servo_travel_correction') ||
 				$(this).attr('data-path').contains('rudder_end_points_no_break') ||
-				$(this).attr('data-path').contains('channels')
+				$(this).attr('data-path').contains('channels') ||
+				$(this).attr('data-path').contains('correction')
 				 );
 		}
-		).show();
+		).hide();
 
 	}
 )

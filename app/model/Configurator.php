@@ -9,20 +9,45 @@ namespace Model;
 class Configurator{
 
 	private $version;
+	private $versionDir;
 	private $humanReadVersion;
 
 
 	private $string = array('cs' => array(), 'en' => array());
 
+	/**
+	 * @param $profile
+	 */
 	public function __construct($profile){
-		$this->version          = $profile[1] . $profile[2];
-		$this->humanReadVersion = $profile[1]. '.0.' . $profile[2];
+		//new version
+		if(count($profile) >= 63 && $profile[63] > 0){
+			$this->version          		 = $profile[1] . $profile[63];
+			$this->humanReadVersion          = $profile[1] . '.' . $profile[63];
+
+			if($profile[2] < 128){
+				$this->humanReadVersion .= '.' . $profile[2];
+			}elseif($profile[2] < 220){
+				$this->humanReadVersion .= '.beta' . ($profile[2] - 128);
+			}else{
+				$this->humanReadVersion .= '.rc' . ($profile[2] - 220);
+			}
+		}else{
+
+			$this->version          = $profile[1] . '' . $profile[2];
+			$this->humanReadVersion = $profile[1] . '.0.' . $profile[2];
+		}
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getVersion(){
 		return $this->humanReadVersion;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isValid(){
 		return file_exists(__DIR__ . '/../configuration/configuration_'.$this->version.'/configurator.php');
 	}
@@ -86,7 +111,7 @@ class Configurator{
 	 * @throws \Exception
 	 */
 	public function getSelectText($name, $value, $lang = 'cs'){
-		if(count($this->string[$lang]) == 0 && file_exists(__DIR__ . '/../configuration/configuration_'.$this->version.'/strings_'.$lang.'.xml')){
+		if(count($this->string[$lang]) == 0 && file_exists(__DIR__ . '/../configuration/configuration_'.$this->versionDir.'/strings_'.$lang.'.xml')){
 			$this->loadString($lang);
 		}
 
