@@ -29,20 +29,30 @@ class ProfilePresenter extends BasePresenter
 	}
 
 	public function renderByUrl(){
-		$phpBB = new \curl_phpbb('http://spirit-system.com/phpBB3/');
+		$url = urldecode($this->getParameter('url'));
 
-		$url = $this->getParameter('url');
-		$phpBB->login('error414', 'jklm258');
+		//clear url
+		$url = str_replace('./', 'http://spirit-system.com/phpBB3/', $url);
 
+		$fileContent = @file_get_contents($url);
 
-		$fileContent = $phpBB->read($url);
+		if(strlen($fileContent) <= 80){
+			$this->flashMessage('Unknow File', 'error');
+			$this->forward('upload');
+			return;
+		}
 
 		$parser = new ProfileParser( $fileContent, $this->lang);
+		if(!$parser->isValid()) {
+			$this->flashMessage('Unsupported version: ' .$parser->getVersion(), 'error');
+			$this->forward('upload');
+			return;
+		}
+
 		$this->template->parsed = $parser->getParsedProfile();
 		$this->template->parser = $parser;
-		$this->template->name = 'test';
+		$this->template->name = $this->getParameter('name');
 
-		$phpBB->logout();
 	}
 
 

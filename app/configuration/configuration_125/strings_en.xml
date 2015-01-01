@@ -3,7 +3,7 @@
 
     <string name="xxx">xxxx</string>
     <string name="settings_name_space">settings_name_space</string>
-    <string name="author_name">Spirit System mobile settings\nPetr Čada - error414@error414.com\nTomáš Jędrzejek - tomasj@spirit-system.com\nTomáš Neuberg\n \n build: 30.11.2014</string>
+    <string name="author_name">Spirit System mobile settings\nPetr Čada - error414@error414.com\nTomáš Jędrzejek - tomasj@spirit-system.com\nTomáš Neuberg\n \n build: 07.12.2014</string>
     <string name="author">Author</string>
     <string name="credits">Credits</string>
     <string name="app_name">Spirit System</string>
@@ -259,12 +259,7 @@
         <item>Automatically</item>
         <item>Čeština</item>
         <item>English</item>
-    </string-array>
-
-    <string-array name="governor_mode_values">
-        <item>Disabled</item>
-        <item>Electric</item>
-        <item>Nitro</item>
+       
     </string-array>
     
      <string-array name="language_pref_values">
@@ -306,24 +301,8 @@
     <string name="pdf_time_run">Run time</string>
     <string name="pdf_time_create">Create time</string>
     <string name="saving_log">Saving log</string>
-
-
-    <string name="tap_to_action">Action</string>
     <string name="tap_to_screenshot_on">Tap screenshot On</string>
     <string name="tap_to_screenshot_off">Tap screenshot Off</string>
-    <string name="tap_to_screenshot_on_state">Tap screenshot is On</string>
-    <string name="tap_to_screenshot_off_state">Tap screenshot is Off</string>
-    <string name="force_save_graph">Save graph</string>
-
-    <string name="tap_to_freeze_on">Tap freeze On</string>
-    <string name="tap_to_freeze_off">Tap freeze Off</string>
-    <string name="tap_to_freeze_on_state">Tap freeze is On</string>
-    <string name="tap_to_freeze_off_state">Tap freeze Off</string>
-
-    <string name="tap_to_freeze_is_on">Freeze On</string>
-    <string name="tap_to_freeze_is_off">Freeze Off</string>
-
-
     <string name="not_save">Save failed</string>
     <string name="save_done">Save Done</string>
     <string name="graph_change_axis">Axis changed to </string>
@@ -373,13 +352,6 @@
     <string name="bank_comparison_changes">Profile must be saved before bank comparison</string>
     <string name="no_active_bank">No bank is active</string>
 
-    <string name="unsaved_changes">Unsaved changes</string>
-    <string name="unsaved_changes_description">Settings were not saved</string>
-    <string name="unsaved_changes_before_disconnect">Before disconnecting the changes were not saved</string>
-
-    <string name="governor">Governor</string>
-    <string name="governor_mode">Governor gain</string>
-    <string name="governor_gain">Governor mode</string>
 
     <!-- HELP AUTO GENERATE STUB --> 
     <string name="st_02282a0a0af7a569d19732b906395ed5">Range around stick center where movement is zero.\n\n<i>Range: 4 - 30</i></string>

@@ -3,7 +3,7 @@
 
     <string name="xxx">xxxx</string>
     <string name="settings_name_space">settings_name_space</string>
-    <string name="author_name">Spirit System mobile settings\nPetr Čada - error414@error414.com\nTomáš Jędrzejek - tomasj@spirit-system.com\nTomáš Neuberg\n \n build: 25.11.2014</string>
+    <string name="author_name">Spirit System mobile settings\nPetr Čada - error414@error414.com\nTomáš Jędrzejek - tomasj@spirit-system.com\nTomáš Neuberg\n \n build: 31.12.2014</string>
     <string name="author">Author</string>
     <string name="credits">Credits</string>
     <string name="app_name">Spirit System</string>
@@ -22,6 +22,7 @@
     <string name="save_profile">Save profile</string>
     <string name="save_profile_to_unit">Save profile to unit</string>
     <string name="profile_saved_file">Settings have been saved to a file</string>
+    <string name="save_to_file_fail">Saving to file failed</string>
     <string name="profile_saved">Settings have been saved</string>
     <string name="profile_load">Settings have been loaded</string>
     <string name="file_manager">File manager</string>
@@ -40,6 +41,7 @@
     <string name="unknow_serial">Unknown serial</string>
     <string name="first_paired_device">Pair your BT device first, please</string>
     <string name="connection_error">Connection error</string>
+    <string name="copy_bank_error">Bank copying failed</string>
     <string name="BT_connection_progress">Bluetooth connection in progress</string>
     <string name="axis_X">X</string>
     <string name="axis_Y">Y</string>
@@ -141,7 +143,8 @@
     <string name="amplitude">Amplitude</string>
     <string name="hz">[Hz]</string>
     <string name="profile_diff">Profile diff</string>
-    <string name="profile_bank_diff">Bank comparison</string>
+    <string name="profile_bank_diff">Comparison</string>
+    <string name="profile_bank_copy">Copying from bank</string>
     <string name="log_button_text">Flight log</string>
     <string name="channels">Channels</string>
     <string name="throttle">Throttle</string>
@@ -363,23 +366,29 @@
     
     <string name="first_choose_directory">First select a directory</string>
     <string name="log_from_previous_flight">Log from previous flight is available! \n Log from the unit is then automaticaly cleared.</string>
-    
+
     <string name="want_save_item">Do you want to save your settings?</string>
     <string name="bank_change_after_connect">Current bank was switched to <b>Bank 0</b>.\nBank switching via transmitter is disabled while the software is connected.</string>
 
     <string name="stabi_piruete_warning">Before you use stabilisation or rescue mode you have to be sure that pirouette optimization is configured correctly else these modes will not work properly!</string>
 
     <string name="bank_choice_title">Choose bank</string>
+    <string name="source_bank_choice_title">Choose source bank</string>
+
     <string name="bank_comparison_changes">Profile must be saved before bank comparison</string>
     <string name="no_active_bank">No bank is active</string>
+
+    <string name="save_profile_changes">Profile must be saved to spirit before save to file</string>
 
     <string name="unsaved_changes">Unsaved changes</string>
     <string name="unsaved_changes_description">Settings were not saved</string>
     <string name="unsaved_changes_before_disconnect">Before disconnecting the changes were not saved</string>
 
     <string name="governor">Governor</string>
-    <string name="governor_mode">Governor gain</string>
-    <string name="governor_gain">Governor mode</string>
+    <string name="governor_mode">Governor mode</string>
+    <string name="governor_gain">Governor gain</string>
+    <string name="governor_pgain">P-gain</string>
+    <string name="governor_igain">I-gain</string>
 
     <!-- HELP AUTO GENERATE STUB --> 
     <string name="st_02282a0a0af7a569d19732b906395ed5">Range around stick center where movement is zero.\n\n<i>Range: 4 - 30</i></string>
