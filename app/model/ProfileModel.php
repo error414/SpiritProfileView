@@ -13,7 +13,8 @@ class ProfileModel extends BaseModel
 		COLUMN_NAME     = 'name',
 		COLUMN_DATA     = 'profile',
 		COLUMN_DATE     = 'date',
-		COLUMN_VERSION  = 'version';
+		COLUMN_VERSION  = 'version',
+		COLUMN_FILEID   = 'file_id';
 
 
 	/**
@@ -48,8 +49,20 @@ class ProfileModel extends BaseModel
 		return $this->database->table(self::TABLE_NAME)->where(self::COLUMN_ID, $id)->fetch();
 	}
 
+	/**
+	 * @param $value
+	 * @return array|Nette\Database\Table\IRow[]
+	 */
 	public function findByFullText($value){
 		$value = '%' . $value . '%';
 		return $this->database->table(self::TABLE_NAME)->where(self::COLUMN_NAME . " LIKE ?", $value)->fetchAll();
+	}
+
+	/**
+	 * @param $idFile
+	 * @return bool|mixed|Nette\Database\Table\IRow
+	 */
+	public function getProfileByIdFile($idFile){
+		return $this->database->table(self::TABLE_NAME)->where(self::COLUMN_FILEID, $idFile)->fetch();
 	}
 }

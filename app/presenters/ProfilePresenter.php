@@ -28,19 +28,40 @@ class ProfilePresenter extends BasePresenter
 
 	}
 
+	/**
+	 *
+	 */
 	public function renderByUrl(){
-		$url = urldecode($this->getParameter('url'));
+		$url 		= urldecode($this->getParameter('url'));
+		$baseUrl 	= $this->getParameter('url');
 
-		//clear url
-		$url = str_replace('./', 'http://spirit-system.com/phpBB3/', $url);
 
-		$fileContent = @file_get_contents($url);
-
-		if(strlen($fileContent) <= 80){
-			$this->flashMessage('Unknow File', 'error');
-			$this->forward('upload');
+		$url 	= parse_url($url);
+		if(isset($url['query'])){
+			parse_str($url['query'], $url['query']);
+		}else{
+			$this->errorFile('Unknow File');
 			return;
 		}
+
+		$save = false;
+
+
+		if($row = $this->profileModel->getProfileByIdFile($url['query']['id'])){
+			$fileContent = $row[ProfileModel::COLUMN_DATA];
+		}else{
+			$baseUrl = str_replace('./', 'http://spirit-system.com/phpBB3/', $baseUrl);
+			$fileContent = @file_get_contents($baseUrl);
+
+			if(strlen($fileContent) <= 80) {
+				$this->flashMessage('Broken File', 'error');
+				$this->forward('upload');
+				return;
+			}
+
+			$save = true;
+		}
+
 
 		$parser = new ProfileParser( $fileContent, $this->lang);
 		if(!$parser->isValid()) {
@@ -53,6 +74,25 @@ class ProfilePresenter extends BasePresenter
 		$this->template->parser = $parser;
 		$this->template->name = $this->getParameter('name');
 
+		if($save && isset($url['query']['id'])){
+			$values = array(
+				ProfileModel::COLUMN_NAME 	 => $this->getParameter('name'),
+				ProfileModel::COLUMN_DATA 	 => $fileContent,
+				ProfileModel::COLUMN_DATE 	 => new Nette\DateTime(),
+				ProfileModel::COLUMN_VERSION => $parser->getVersion(),
+				ProfileModel::COLUMN_FILEID  => $url['query']['id'],
+			);
+
+			$this->profileModel->save($values);
+		}
+	}
+
+	/**
+	 * @param $text
+	 */
+	protected function errorFile($text){
+		$this->flashMessage($text, 'error');
+		$this->forward('error');
 	}
 
 
