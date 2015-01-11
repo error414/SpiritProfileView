@@ -17,7 +17,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     protected $profileModel;
 
     /**
-     * @param Model\MenuModel
+     * @param Model\ProfileModel
      */
     public function injectDomainsModel(ProfileModel $profileModel)
     {

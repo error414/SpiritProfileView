@@ -54,8 +54,7 @@ class ProfilePresenter extends BasePresenter
 			$fileContent = @file_get_contents($baseUrl);
 
 			if(strlen($fileContent) <= 80) {
-				$this->flashMessage('Broken File', 'error');
-				$this->forward('upload');
+				$this->error('Broken File');
 				return;
 			}
 
@@ -65,8 +64,7 @@ class ProfilePresenter extends BasePresenter
 
 		$parser = new ProfileParser( $fileContent, $this->lang);
 		if(!$parser->isValid()) {
-			$this->flashMessage('Unsupported version: ' .$parser->getVersion(), 'error');
-			$this->forward('upload');
+			$this->error('Unsupported version: ' .$parser->getVersion());
 			return;
 		}
 
@@ -92,7 +90,7 @@ class ProfilePresenter extends BasePresenter
 	 */
 	protected function errorFile($text){
 		$this->flashMessage($text, 'error');
-		$this->forward('error');
+		$this->forward('Profile::efile');
 	}
 
 
@@ -167,6 +165,10 @@ class ProfilePresenter extends BasePresenter
 
 		echo $profile->profile;
 		$this->terminate();
+	}
+	
+	public function renderEfile(){
+		die('a');
 	}
 
 
