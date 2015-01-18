@@ -14,7 +14,11 @@ class ProfileModel extends BaseModel
 		COLUMN_DATA     = 'profile',
 		COLUMN_DATE     = 'date',
 		COLUMN_VERSION  = 'version',
-		COLUMN_FILEID   = 'file_id';
+		COLUMN_FILEID   = 'file_id',
+		COLUMN_IP   	= 'ip',
+		COLUMN_USERAGENT= 'user_agent',
+		COLUMN_VIEWS	= 'views';
+
 
 
 	/**
@@ -64,5 +68,13 @@ class ProfileModel extends BaseModel
 	 */
 	public function getProfileByIdFile($idFile){
 		return $this->database->table(self::TABLE_NAME)->where(self::COLUMN_FILEID, $idFile)->fetch();
+	}
+
+	/**
+	 * @param $idFile
+	 * @return bool|mixed|Nette\Database\Table\IRow
+	 */
+	public function increaseViews($idFile){
+		return $this->database->query('UPDATE ' . self::TABLE_NAME . ' SET views = views + 1 WHERE id=?', $idFile);
 	}
 }

@@ -26,6 +26,10 @@ class ProfilePresenter extends BasePresenter
 		$this->template->parser = $parser;
 		$this->template->id = $this->profileModel->getById($this->getParameter('id'));
 
+		if($this->template->parser->isValid()){
+			$this->profileModel->increaseViews($this->getParameter('id'));
+		}
+
 	}
 
 	/**
@@ -54,7 +58,7 @@ class ProfilePresenter extends BasePresenter
 			$fileContent = @file_get_contents($baseUrl);
 
 			if(strlen($fileContent) <= 80) {
-				$this->error('Broken File');
+				$this->errorFile('Broken File');
 				return;
 			}
 
@@ -64,7 +68,7 @@ class ProfilePresenter extends BasePresenter
 
 		$parser = new ProfileParser( $fileContent, $this->lang);
 		if(!$parser->isValid()) {
-			$this->error('Unsupported version: ' .$parser->getVersion());
+			$this->errorFile('Unsupported version: ' .$parser->getVersion());
 			return;
 		}
 
@@ -81,7 +85,13 @@ class ProfilePresenter extends BasePresenter
 				ProfileModel::COLUMN_FILEID  => $url['query']['id'],
 			);
 
-			$this->profileModel->save($values);
+			$id = $this->profileModel->save($values);
+		}else{
+			$id = $url['query']['id'];
+		}
+
+		if($this->template->parser->isValid()){
+			$this->profileModel->increaseViews($id);
 		}
 	}
 
@@ -90,7 +100,7 @@ class ProfilePresenter extends BasePresenter
 	 */
 	protected function errorFile($text){
 		$this->flashMessage($text, 'error');
-		$this->forward('Profile::efile');
+		$this->redirect('efile');
 	}
 
 
@@ -126,6 +136,8 @@ class ProfilePresenter extends BasePresenter
 			ProfileModel::COLUMN_NAME 		=> $values['profile']->getName(),
 			ProfileModel::COLUMN_DATA 		=> $values['profile']->getContents(),
 			ProfileModel::COLUMN_VERSION 	=> NULL,
+			ProfileModel::COLUMN_IP  	 	=> $_SERVER['REMOTE_ADDR'],
+			ProfileModel::COLUMN_USERAGENT 	=> $_SERVER['HTTP_USER_AGENT'],
 		);
 
 		try {
@@ -168,7 +180,6 @@ class ProfilePresenter extends BasePresenter
 	}
 	
 	public function renderEfile(){
-		die('a');
 	}
 
 
