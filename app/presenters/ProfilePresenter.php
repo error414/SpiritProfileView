@@ -3,8 +3,8 @@ namespace App\Presenters;
 
 use Model\ProfileModel;
 use Model\ProfileParser;
+use Model\ProfileComparator;
 use Nette;
-
 
 
 /**
@@ -18,23 +18,62 @@ class ProfilePresenter extends BasePresenter
 	}
 
 	public function renderShow()
-	{
-		$this->template->profile = $this->profileModel->getById($this->getParameter('id'));
-
+	{      //fixnout dotazy do databaze
+        $profile = $this->profileModel->getById($this->getParameter('id'));
+        $this->template->profile = $profile;
+        
 		$parser = new ProfileParser( $this->template->profile->profile, $this->lang);
+         
+        
 		$this->template->parsed = $parser->getParsedProfile();
 		$this->template->parser = $parser;
-		$this->template->id = $this->profileModel->getById($this->getParameter('id'));
+		$this->template->id = $profile;
 
 		if($this->template->parser->isValid()){
 			$this->profileModel->increaseViews($this->getParameter('id'));
 		}
 
 	}
+    
+    public function renderCompare(){
+            //Fixnout dotazy do databaze
+            $profile1 = $this->profileModel->getById($this->getParameter('id'));
+            $profile2 = $this->profileModel->getById($this->getParameter('id2'));
+            
+            $parser1 = new ProfileParser ($profile1->profile, $this->lang);
+            $parser2 = new ProfileParser ($profile2->profile, $this->lang);
+            
+            if ($parser1->getVersion() === $parser2->getVersion()){
+                
+                $compareResult = new ProfileComparator ($parser1->getParsedProfile(), $parser2->getParsedProfile());
+                
+                $this->template->id = $profile1;
+                $this->template->id2 = $profile2;
+                
+                $this->template->profile1 = $profile1;
+                $this->template->profile2 = $profile2;
+                
+                $this->template->parser1 = $parser1;
+                $this->template->parser2 = $parser2;
+                
+                $this->template->parsed1 = $parser1->getParsedProfile();
+                $this->template->parsed2 = $parser2->getParsedProfile();
+                
+                $this->template->compared = $compareResult->getCompared();
+                
+                if($this->template->parser1->isValid()&&$this->template->parser2->isValid()){
+		          $this->profileModel->increaseViews($this->getParameter('id'));
+                  $this->profileModel->increaseViews($this->getParameter('id2'));
+                }
+                                                
+            }else{
+                
+                $this->errorFile('Uncomparable versions: ' . $parser1->getVersion() . ' != ' . $parser2->getVersion());
+                     
+           }
+             
+    }
 
-	/**
-	 *
-	 */
 	public function renderByUrl(){
 		$url 		= urldecode($this->getParameter('url'));
 		$baseUrl 	= $this->getParameter('url');
@@ -65,31 +104,37 @@ class ProfilePresenter extends BasePresenter
 			$save = true;
 		}
 
+        try{
+    		$parser = new ProfileParser( $fileContent, $this->lang);
+    		if(!$parser->isValid()) {
+    			$this->errorFile('Unsupported version: ' .$parser->getVersion());
+    			return;
+    		}
+        
 
-		$parser = new ProfileParser( $fileContent, $this->lang);
-		if(!$parser->isValid()) {
-			$this->errorFile('Unsupported version: ' .$parser->getVersion());
+    		$this->template->parsed = $parser->getParsedProfile();
+    		$this->template->parser = $parser;
+    		$this->template->name = $this->getParameter('name');
+    
+    		if($save && isset($url['query']['id'])){
+    			$values = array(
+    				ProfileModel::COLUMN_NAME 	 => $this->getParameter('name'),
+    				ProfileModel::COLUMN_DATA 	 => $fileContent,
+    				ProfileModel::COLUMN_DATE 	 => new Nette\DateTime(),
+    				ProfileModel::COLUMN_VERSION => $parser->getVersion(),
+    				ProfileModel::COLUMN_FILEID  => $url['query']['id'],
+    			);
+    
+    			$id = $this->profileModel->save($values);
+    		}else{
+    			$id = $url['query']['id'];
+    		}
+            
+        }catch(\Exception $e){
+			$this->flashMessage($e->getMessage());
 			return;
 		}
-
-		$this->template->parsed = $parser->getParsedProfile();
-		$this->template->parser = $parser;
-		$this->template->name = $this->getParameter('name');
-
-		if($save && isset($url['query']['id'])){
-			$values = array(
-				ProfileModel::COLUMN_NAME 	 => $this->getParameter('name'),
-				ProfileModel::COLUMN_DATA 	 => $fileContent,
-				ProfileModel::COLUMN_DATE 	 => new Nette\DateTime(),
-				ProfileModel::COLUMN_VERSION => $parser->getVersion(),
-				ProfileModel::COLUMN_FILEID  => $url['query']['id'],
-			);
-
-			$id = $this->profileModel->save($values);
-		}else{
-			$id = $url['query']['id'];
-		}
-
+        
 		if($this->template->parser->isValid()){
 			$this->profileModel->increaseViews($id);
 		}

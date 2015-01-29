@@ -1,0 +1,63 @@
+{block content}
+<div class="container">
+	<a class="homelink" href="{link :Homepage:default}"><h1 n:block=title>Spirit profile <sub>alpha</sub></h1></a>
+	<br>
+	<br>
+	<br>
+	<h2>Comparing <strong> {$profile1->name} ({$profile1->version})</strong> VS <strong>{$profile2->name} ({$profile2->version}) </strong> </h2>
+
+	<div class="span-20">
+		<h4>Link {$profile1->name}</h4> 
+		<textarea style="width:100%;height:50px" readonly><a href="http://4dsviewer.spirit-system.com{link show, id => $id}">{$profile1->name} ({$profile1->version})</a></textarea>
+		{*<h4>Link BB</h4>
+		<textarea style="width:100%;height:50px" readonly><a href="http://4dsviewer.spirit-system.com{link show, id => $id}">{$profile1->name} ({$profile1->version})</a></textarea>*}
+        <a style="margin-left:50px" href="{link download, id=>$id}"> download </a>
+	</div>
+    <div class="span-20">
+		<h4>Link {$profile2->name}</h4> 
+		<textarea style="width:100%;height:50px" readonly><a href="http://4dsviewer.spirit-system.com{link show, id => $id2}">{$profile2->name} ({$profile2->version})</a></textarea>
+		{*<h4>Link BB</h4>
+		<textarea style="width:100%;height:50px" readonly><a href="http://4dsviewer.spirit-system.com{link show, id => $id2}">{$profile2->name} ({$profile2->version})</a></textarea>*}
+        <a style="margin-left:50px" href="{link download, id=>$id2}"> download </a>
+	</div>
+
+	<div class="span-20 top">
+		<a href="{link :Homepage:default}"> <<< back <<< </a> 
+		{foreach $parsed1 as $nameGroup => $group}
+			<h3 data-path="{$nameGroup}"><?=$parser1->getText($nameGroup)?></h3>
+			<table data-path="{$nameGroup}" class="res">
+				{foreach $group as $item}
+					<tr data-path="{$item['path']}">
+						<td style="width:700px">{$item['label']}</td>
+					{if isset($item['min']) && $item['min'] !== NULL && $item['min'] !== ''}
+						<td><strong>{$item['value']}</strong></td><td> ({$item['min']} <-> {$item['max']})</td>
+					{else}
+						<td><strong>{$item['value']}</strong></td><td>&nbsp;</td>
+					{/if}
+					</tr>
+				{/foreach}
+			</table>
+		{/foreach}
+		<a href="{link :Homepage:default}"> <<< back <<< </a>
+	</div>
+</div>
+<script>
+
+$(document).ready(
+	function(){
+		$('.res  tr,h3,table').filter(function(){
+			return (
+				$(this).attr('data-path').contains('subtrim') ||
+				$(this).attr('data-path').contains('cyclic_ring_range') ||
+				$(this).attr('data-path').contains('servo_travel_correction') ||
+				$(this).attr('data-path').contains('rudder_end_points_no_break') ||
+				$(this).attr('data-path').contains('channels') ||
+				$(this).attr('data-path').contains('correction')
+				 );
+		}
+		).hide();
+
+	}
+)
+
+</script>
