@@ -15,8 +15,8 @@ class ProfileComparator{
         
         // Debug //
         $this->compared = $this->array_diff_assoc_recursive($parsedProfile1,$parsedProfile2);
-            \Nette\Diagnostics\Debugger::barDump($parsedProfile1);
-            \Nette\Diagnostics\Debugger::barDump($this->compared);
+            //\Nette\Diagnostics\Debugger::barDump($parsedProfile1);
+            //\Nette\Diagnostics\Debugger::barDump($this->compared);
             
         // Debug end //    
     
@@ -43,12 +43,43 @@ class ProfileComparator{
         return $difference;
         
     }
-    
+
+    /**
+     * @return array
+     */
     public function getCompared (){
         
-        return $this->array_diff_assoc_recursive($this->parsedProfile1,$this->parsedProfile2);
-        
+        $comparedArray = $this->array_diff_assoc_recursive($this->parsedProfile1,$this->parsedProfile2);
+
+        $buff = array();
+        foreach($comparedArray as $key => $item){
+            $this->multiarrayKeys($buff, $item, $key);
+        }
+
+        return $buff;
     }
+
+    private $res = array();
+
+    /**
+     * @param $res
+     * @param $ar
+     * @param string $parentNode
+     */
+    private function multiarrayKeys(&$res, $ar, $parentNode = '') {
+        $currentParentNode = $parentNode;
+        foreach($ar as $key => $value) {
+            if (is_array($value)) {
+                $currentParentNode = $parentNode . '/' . $key;
+                $this->multiarrayKeys($res, $value,  $currentParentNode);
+            }else{
+                $res[] = $currentParentNode;
+            }
+        }
+    }
+
+
+
         
        
 }
