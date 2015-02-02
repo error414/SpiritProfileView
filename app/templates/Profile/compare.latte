@@ -30,9 +30,9 @@
 						<td style="width:700px">{$item['label']}{if in_array($iterator->counter-1, $pos)} HERE {/if}
                         </td>
         				{if isset($item['min']) && $item['min'] !== NULL && $item['min'] !== ''}
-        					<td><strong>{$item['value']}</strong></td><td> ({$item['min']} <-> {$item['max']})</td>
+        					<td><strong>{$item['value']}</strong></td><td></td> {*$profile2Values*} <td> ({$item['min']} <-> {$item['max']})</td>
         				{else}
-        					<td><strong>{$item['value']}</strong></td><td>&nbsp;</td>
+        					<td><strong>{$item['value']}</strong></td><td>{*$profile2Values*}</td> <td>&nbsp;</td>
      					{/if}
                     </tr>
 				{/foreach}

@@ -59,6 +59,7 @@ class ProfilePresenter extends BasePresenter
                 $this->template->parsed2 = $parser2->getParsedProfile();
                 
                 $this->template->compared = $compareResult->getCompared();
+                $this->template->profile2Values = $compareResult->getValues($res, $this->template->parsed2);
                 
                 if($this->template->parser1->isValid()&&$this->template->parser2->isValid()){
 		          $this->profileModel->increaseViews($this->getParameter('id'));

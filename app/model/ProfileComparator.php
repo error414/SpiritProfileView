@@ -8,21 +8,37 @@ class ProfileComparator{
     private $parsedProfile2;
     private $compared;
     
-    public function __construct (array $parsedProfile1, array $parsedProfile2){
+    public function __construct (array $parsedProfile1, array $parsedProfile2){ 
     
         $this->parsedProfile1 = $parsedProfile1;    
         $this->parsedProfile2 = $parsedProfile2;
         
         // Debug //
-        $this->compared = $this->array_diff_assoc_recursive($parsedProfile1,$parsedProfile2);
-            //\Nette\Diagnostics\Debugger::barDump($parsedProfile1);
-            //\Nette\Diagnostics\Debugger::barDump($this->compared);
-            
-        // Debug end //    
+            \Nette\Diagnostics\Debugger::barDump($this->getValues($res,$this->parsedProfile2));
+        //    \Nette\Diagnostics\Debugger::barDump($this->getCompared());   
+        // Debug end //
     
     }
     
+    /**
+    * @return array
+    */
+     
+    public function getCompared (){
+        
+        $comparedArray = $this->array_diff_assoc_recursive($this->parsedProfile1,$this->parsedProfile2);
 
+        $buff = array();
+        
+        foreach($comparedArray as $key => $item){
+            $this->multiarrayKeys($buff, $item, $key);
+        }
+        
+        return $buff;
+    }   
+    
+
+    
     private function array_diff_assoc_recursive($array1, $array2) {
         
         $difference=array();
@@ -33,8 +49,9 @@ class ProfileComparator{
                     $difference[$key] = $value;
                 } else {
                     $new_diff = $this->array_diff_assoc_recursive($value, $array2[$key]);
-                    if( !empty($new_diff) )
+                    if( !empty($new_diff) ){
                         $difference[$key] = $new_diff;
+                    }
                 }
             } else if( !array_key_exists($key,$array2) || $array2[$key] !== $value ) {
                 $difference[$key] = $value;
@@ -43,23 +60,20 @@ class ProfileComparator{
         return $difference;
         
     }
-
-    /**
-     * @return array
-     */
-    public function getCompared (){
-        
-        $comparedArray = $this->array_diff_assoc_recursive($this->parsedProfile1,$this->parsedProfile2);
-
-        $buff = array();
-        foreach($comparedArray as $key => $item){
-            $this->multiarrayKeys($buff, $item, $key);
+    
+    
+    public function getValues(&$res,$array){
+        foreach ($array as $key => $value){
+            if (is_array($value)){
+                $this->getValues($res, $value);
+            }else{
+                if ($key == "value"){
+                    $res[] = $value;
+                }
+            }
         }
-
-        return $buff;
+        return $res;
     }
-
-    private $res = array();
 
     /**
      * @param $res
@@ -73,13 +87,10 @@ class ProfileComparator{
                 $currentParentNode = $parentNode . '/' . $key;
                 $this->multiarrayKeys($res, $value,  $currentParentNode);
             }else{
-                $res[] = $currentParentNode;
+                $res[$currentParentNode] = $currentParentNode;
             }
         }
     }
 
-
-
-        
-       
+      
 }
