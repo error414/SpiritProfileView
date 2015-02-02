@@ -65,7 +65,8 @@ class ProfilePresenter extends BasePresenter
 		          $this->profileModel->increaseViews($this->getParameter('id'));
                   $this->profileModel->increaseViews($this->getParameter('id2'));
                 }
-                                                
+
+
             }else{
                 
                 $this->errorFile('Uncomparable versions: ' . $parser1->getVersion() . ' != ' . $parser2->getVersion());

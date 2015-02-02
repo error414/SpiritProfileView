@@ -14,20 +14,20 @@
 	<div class="span-20 top">
 		<a href="{link :Homepage:default}"> <<< back <<< </a> 
 		{foreach $parsed1 as $nameGroup => $group}
-            <? $pos = array(); ?>              
 			<h3 data-path="{$nameGroup}"><?=$parser1->getText($nameGroup)?></h3>
 			<table data-path="{$nameGroup}" class="res">
-            {foreach $compared as $comparedPath}    
-                <?
-                $position = explode("/",$comparedPath);
-                if ($position[0]==$nameGroup){
-                    $pos[] = $position[1];    
-                }
-                ?>
-            {/foreach}    
-				{foreach $group as $item}
+				{foreach $group as $key => $item}
 					<tr data-path="{$item['path']}">
-						<td style="width:700px">{$item['label']}{if in_array($iterator->counter-1, $pos)} HERE {/if}
+						<td style="width:700px">{$item['label']}
+
+
+
+							{if in_array($nameGroup . '/' . $key, $compared)}
+								 HERE
+								{$parsed2[$nameGroup][$key]['value']}
+							{/if}
+
+
                         </td>
         				{if isset($item['min']) && $item['min'] !== NULL && $item['min'] !== ''}
         					<td><strong>{$item['value']}</strong></td><td></td> {*$profile2Values*} <td> ({$item['min']} <-> {$item['max']})</td>
