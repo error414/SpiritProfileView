@@ -7,35 +7,36 @@
 	<h2>Comparing <strong> {$profile1->name} ({$profile1->version})</strong> VS <strong>{$profile2->name} ({$profile2->version}) </strong> </h2>
 
 	<div class="span-20">
-		<h4>Link {$profile1->name}</h4> 
-		<textarea style="width:100%;height:50px" readonly><a href="http://4dsviewer.spirit-system.com{link show, id => $id}">{$profile1->name} ({$profile1->version})</a></textarea>
-		{*<h4>Link BB</h4>
-		<textarea style="width:100%;height:50px" readonly><a href="http://4dsviewer.spirit-system.com{link show, id => $id}">{$profile1->name} ({$profile1->version})</a></textarea>*}
-        <a style="margin-left:50px" href="{link download, id=>$id}"> download </a>
-	</div>
-    <div class="span-20">
-		<h4>Link {$profile2->name}</h4> 
-		<textarea style="width:100%;height:50px" readonly><a href="http://4dsviewer.spirit-system.com{link show, id => $id2}">{$profile2->name} ({$profile2->version})</a></textarea>
-		{*<h4>Link BB</h4>
-		<textarea style="width:100%;height:50px" readonly><a href="http://4dsviewer.spirit-system.com{link show, id => $id2}">{$profile2->name} ({$profile2->version})</a></textarea>*}
-        <a style="margin-left:50px" href="{link download, id=>$id2}"> download </a>
+		<h4>Compare link {$profile1->name} {$profile2->name}</h4> 
+		<textarea style="width:100%;height:50px" readonly><a href="http://4dsviewer.spirit-system.com{link compare, id => $id, id2 => $id2}">{$profile1->name} ({$profile1->version}) VS {$profile2->name} ({$profile2->version})</a></textarea>
 	</div>
 
 	<div class="span-20 top">
 		<a href="{link :Homepage:default}"> <<< back <<< </a> 
 		{foreach $parsed1 as $nameGroup => $group}
+            <? $pos = array(); ?>              
 			<h3 data-path="{$nameGroup}"><?=$parser1->getText($nameGroup)?></h3>
 			<table data-path="{$nameGroup}" class="res">
+            {foreach $compared as $comparedPath}    
+                <?
+                $position = explode("/",$comparedPath);
+                if ($position[0]==$nameGroup){
+                    $pos[] = $position[1];    
+                }
+                ?>
+            {/foreach}    
 				{foreach $group as $item}
 					<tr data-path="{$item['path']}">
-						<td style="width:700px">{$item['label']}</td>
-					{if isset($item['min']) && $item['min'] !== NULL && $item['min'] !== ''}
-						<td><strong>{$item['value']}</strong></td><td> ({$item['min']} <-> {$item['max']})</td>
-					{else}
-						<td><strong>{$item['value']}</strong></td><td>&nbsp;</td>
-					{/if}
-					</tr>
+						<td style="width:700px">{$item['label']}{if in_array($iterator->counter-1, $pos)} HERE {/if}
+                        </td>
+        				{if isset($item['min']) && $item['min'] !== NULL && $item['min'] !== ''}
+        					<td><strong>{$item['value']}</strong></td><td> ({$item['min']} <-> {$item['max']})</td>
+        				{else}
+        					<td><strong>{$item['value']}</strong></td><td>&nbsp;</td>
+     					{/if}
+                    </tr>
 				{/foreach}
+                <? unset ($pos); ?>
 			</table>
 		{/foreach}
 		<a href="{link :Homepage:default}"> <<< back <<< </a>

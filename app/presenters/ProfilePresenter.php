@@ -18,7 +18,7 @@ class ProfilePresenter extends BasePresenter
 	}
 
 	public function renderShow()
-	{      //fixnout dotazy do databaze
+	{   
         $profile = $this->profileModel->getById($this->getParameter('id'));
         $this->template->profile = $profile;
         
@@ -36,7 +36,6 @@ class ProfilePresenter extends BasePresenter
 	}
     
     public function renderCompare(){
-            //Fixnout dotazy do databaze
             $profile1 = $this->profileModel->getById($this->getParameter('id'));
             $profile2 = $this->profileModel->getById($this->getParameter('id2'));
             
@@ -60,9 +59,7 @@ class ProfilePresenter extends BasePresenter
                 $this->template->parsed2 = $parser2->getParsedProfile();
                 
                 $this->template->compared = $compareResult->getCompared();
-
-				var_dump($this->template->compared);
-
+                
                 if($this->template->parser1->isValid()&&$this->template->parser2->isValid()){
 		          $this->profileModel->increaseViews($this->getParameter('id'));
                   $this->profileModel->increaseViews($this->getParameter('id2'));
