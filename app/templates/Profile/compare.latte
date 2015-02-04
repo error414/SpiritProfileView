@@ -18,22 +18,20 @@
 			<table data-path="{$nameGroup}" class="res">
 				{foreach $group as $key => $item}
 					<tr data-path="{$item['path']}">
-						<td style="width:700px">{$item['label']}
-
-
-
-							{if in_array($nameGroup . '/' . $key, $compared)}
-								 HERE
-								{$parsed2[$nameGroup][$key]['value']}
-							{/if}
-
-
-                        </td>
-        				{if isset($item['min']) && $item['min'] !== NULL && $item['min'] !== ''}
-        					<td><strong>{$item['value']}</strong></td><td></td> {*$profile2Values*} <td> ({$item['min']} <-> {$item['max']})</td>
-        				{else}
-        					<td><strong>{$item['value']}</strong></td><td>{*$profile2Values*}</td> <td>&nbsp;</td>
-     					{/if}
+						<td style="width:700px">{$item['label']}</td>
+                        {if in_array($nameGroup . '/' . $key, $compared)}
+    						{if isset($item['min']) && $item['min'] !== NULL && $item['min'] !== ''}
+            					<td><strong style="color: red;">{$item['value']}</strong></td><td><strong style="color: red;">{$parsed2[$nameGroup][$key]['value']}</strong></td> <td> ({$item['min']} <-> {$item['max']})</td>
+            				{else}
+            					<td><strong style="color: red;">{$item['value']}</strong></td><td><strong style="color: red;">{$parsed2[$nameGroup][$key]['value']}</strong></td> <td>&nbsp;</td>
+         					{/if}
+                        {else} 	 
+                            {if isset($item['min']) && $item['min'] !== NULL && $item['min'] !== ''}
+            					<td>{$item['value']}</td><td>{$parsed2[$nameGroup][$key]['value']}</td> <td> ({$item['min']} <-> {$item['max']})</td>
+            				{else}
+            					<td>{$item['value']}</td><td>{$parsed2[$nameGroup][$key]['value']}</td> <td>&nbsp;</td>
+         					{/if}
+						{/if}
                     </tr>
 				{/foreach}
                 <? unset ($pos); ?>

@@ -14,7 +14,6 @@ class ProfileComparator{
         $this->parsedProfile2 = $parsedProfile2;
         
         // Debug //
-            \Nette\Diagnostics\Debugger::barDump($this->getValues($res,$this->parsedProfile2));
         //    \Nette\Diagnostics\Debugger::barDump($this->getCompared());   
         // Debug end //
     
@@ -61,19 +60,6 @@ class ProfileComparator{
         
     }
     
-    
-    public function getValues(&$res,$array){
-        foreach ($array as $key => $value){
-            if (is_array($value)){
-                $this->getValues($res, $value);
-            }else{
-                if ($key == "value"){
-                    $res[] = $value;
-                }
-            }
-        }
-        return $res;
-    }
 
     /**
      * @param $res
