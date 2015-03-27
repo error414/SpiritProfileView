@@ -2,7 +2,7 @@
 <resources>
     <string name="xxx">xxxx</string>
     <string name="settings_name_space">settings_name_space</string>
-    <string name="author_name">Spirit System mobile settings\nPetr Čada - error414@error414.com\nTomáš Jędrzejek - tomasj@spirit-system.com\nTomáš Neuberg \n \n sestavení: 14.03.2015-devel</string>
+    <string name="author_name">Spirit System mobile settings\nPetr Čada - error414@error414.com\nTomáš Jędrzejek - tomasj@spirit-system.com\nTomáš Neuberg \n \n sestavení: 27.03.2015-devel</string>
     <string name="author">Autoři</string>
     <string name="credits">Zásluhy</string>
 
@@ -91,7 +91,7 @@
     <string name="unit">Jednotka</string>
     <string name="link">Spojení</string>
     <string name="governor_rpm_senzor">RPM senzor</string>
-    
+
     <string name="position_text">Pozice</string>
     <string name="model_text">Model</string>
     <string name="mix_text">Mixování</string>
@@ -378,6 +378,7 @@
 
 
     <string name="not_save">Uložení selhalo</string>
+    <string name="save_proccess">Ukládám</string>
     <string name="save_done">Uloženo</string>
     <string name="graph_change_axis">Osa změněna na </string>
     <string name="spirit_not_found">Spirit nebyl nalezen</string>
@@ -446,7 +447,9 @@
 
     <string name="governor">Governor</string>
     <string name="governor_mode">Režim governoru</string>
-    <string name="governor_gain">Zisk governoru</string>
+    <string name="governor_gain">Ladění</string>
+    <string name="governor_pgain">Odezva governoru</string>
+    <string name="governor_igain">Míra držení otáček</string>
 
     <!-- HELP AUTO GENERATE STUB --> 
     <string name="st_02282a0a0af7a569d19732b906395ed5">Rozsah polohy páček kolem středu, který je považován za nulový.\n\n<i>Rozsah: 4 - 30</i></string>
@@ -486,6 +489,18 @@
     <string name="st_64d671d1921bac26046cf0d04da37ff1">Povolí speciální režim, kdy je možno využít jednotku pro pádlové vrtulníky včetně stabilizace a záchrany.\n\n- Vždy vypnuto pro bezpádlové vrtulníky.\n- Povolte pouze pro pádlové vrtulníky!</string>
     <!--  END AUTO GENERATE STUB -->
 
+
+    <string name="governor_thr_range">Rozsah plynu</string>
+    <string name="governor_thr_min">Min</string>
+    <string name="governor_thr_max">Max</string>
+    <string name="governor_gear_settings">Nastavení převodu</string>
+    <string name="governor_ratio">Převodový poměr</string>
+    <string name="governor_divider">Dělitel snímače</string>
+    <string name="governor_rpm_max">Max. otáčky hl. rotoru</string>
+    <string name="governor_request_rpm">Požadované otáčky</string>
+    <string name="governor_current_rpm">Aktuální otáčky</string>
+    <string name="governor_thr_reverse">Reverz plynu</string>
+
     <string name="in_transmitter">﻿Ve vysílači</string>
     <string name="ga_trackingId">UA-60203884-1</string>
     <string name="cant_send_data">Data nebyla odeslána</string>
@@ -495,4 +510,6 @@
     <string name="no_internet_connection">Bez připojení k internetu</string>
     <string name="download_error">Chyba stahování</string>
     <string name="sys_disconected">Zkontrolujte prosím připojení Bluetooth modulu.</string>
+    <string name="rewrite_file">Soubor již existuje. Chcete jej přepsat?</string>
+    <string name="pdf_reader_not_found">Nebyla nalezena čtečka PDF \nProsím nainstalujte čtečku PDF, například: \n\n* Adobe Reader \n* Foxit MobilePDF\n* MuPDF</string>
 </resources>

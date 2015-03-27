@@ -10,6 +10,6 @@ class GovernorThrRangeMinProgressExTranslate {
 
     public function translateCurrent($current)
     {
-        return round($current / 20, 2);
+        return ($current * -1);
     }
 }

@@ -10,6 +10,6 @@ class GovernorgearRatioProgressExTranslate {
 
     public function translateCurrent($current)
     {
-        return ($current * -1);
+        return round($current / 20, 2);
     }
 }
