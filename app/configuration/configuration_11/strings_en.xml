@@ -168,7 +168,7 @@
     <string name="log_button_text">Flight log</string>
     <string name="channels">Channels</string>
     <string name="throttle">Throttle</string>
-    <string name="gyro_gain">﻿Rudder Commonn</string>
+    <string name="gyro_gain">Rudder Common</string>
     <string name="banks">Banks</string>
     <string name="bank_short_code">B</string>
     <string name="choose_bank">Select bank</string>

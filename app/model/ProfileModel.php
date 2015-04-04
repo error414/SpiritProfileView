@@ -46,6 +46,15 @@ class ProfileModel extends BaseModel
 	}
 
 	/**
+	 * @param $query
+	 *
+	 * @return array|Nette\Database\Table\IRow[]
+	 */
+	public function findAll($query){
+		return $this->database->table(self::TABLE_NAME)->where($query)->fetchAll();
+	}
+
+	/**
 	 * @param $id
 	 * @return bool|mixed|Nette\Database\Table\IRow
 	 */
