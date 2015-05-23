@@ -141,12 +141,12 @@ class CliPresenter extends BasePresenter{
 
 		$nameLength = 10;
 		foreach($profiles as $profile){
-			$nameLength = max($nameLength, mb_strlen($profile->name) + 5);
+			$nameLength = max($nameLength, mb_strlen($profile->name, 'UTF-8') + 5);
 		}
 
 		$result = '';
 		foreach($profiles as $profile){
-			$result .= '[' . $profile->id . ']' . str_repeat(' ', 4 - mb_strlen((string)$profile->id)) . $profile->name . str_repeat(' ', $nameLength - mb_strlen($profile->name)). $profile->version . "\n";
+			$result .= '[' . $profile->id . ']' . str_repeat(' ', 4 - mb_strlen((string)$profile->id), 'UTF-8') . $profile->name . str_repeat(' ', $nameLength - mb_strlen($profile->name, 'UTF-8')). $profile->version . "\n";
 		}
 
 		return $result;
@@ -170,28 +170,28 @@ class CliPresenter extends BasePresenter{
 		$parser = new ProfileParser( $profile->profile, $this->lang);
 
 		$parsed = $parser->getParsedProfile();
-		$result = "\n" . $profile->name .'(' . $profile->version . ") \n" . str_repeat('-', mb_strlen($profile->name .'(' . $profile->version . ")")) . "\n" . str_repeat('-', mb_strlen($profile->name .'(' . $profile->version . ")")) . "\n";
+		$result = "\n" . $profile->name .'(' . $profile->version . ") \n" . str_repeat('-', mb_strlen($profile->name .'(' . $profile->version . ")", 'UTF-8')) . "\n" . str_repeat('-', mb_strlen($profile->name .'(' . $profile->version . ")", 'UTF-8')) . "\n";
 
 		$labelLength = 10;
 		$valueLength = 10;
 		foreach($parsed as $nameGroup => $group){
 			foreach($group as $item){
-				$labelLength = max($labelLength, mb_strlen($item['label']) + 5);
-				$valueLength = max($valueLength, mb_strlen($item['value']) + 5);
+				$labelLength = max($labelLength, mb_strlen($item['label']) + 5, 'UTF-8');
+				$valueLength = max($valueLength, mb_strlen($item['value']) + 5, 'UTF-8');
 			}
 		}
 
 		foreach($parsed as $nameGroup => $group){
 			$result .= "\n" . $parser->getText($nameGroup) . "\n";
-			$result .= str_repeat('-', mb_strlen($parser->getText($nameGroup))) . "\n";
+			$result .= str_repeat('-', mb_strlen($parser->getText($nameGroup), 'UTF-8')) . "\n";
 
 			foreach($group as $item){
 				$result .= $item['label'];
 				if(isset($item['min']) && $item['min'] !== NULL && $item['min'] !== '') {
-					$result .= str_repeat(' ', $labelLength - mb_strlen($item['label'])) . $item['value'];
-					$result .= str_repeat( ' ', $valueLength - mb_strlen( $item['value'] ) ) . ($item['min'] . " <-> " . $item['max']) . "\n";
+					$result .= str_repeat(' ', $labelLength - mb_strlen($item['label'], 'UTF-8')) . $item['value'];
+					$result .= str_repeat( ' ', $valueLength - mb_strlen( $item['value'], 'UTF-8' ) ) . ($item['min'] . " <-> " . $item['max']) . "\n";
 				}else{
-					$result .= str_repeat(' ', $labelLength - mb_strlen($item['label'])) . $item['value'] . "\n";
+					$result .= str_repeat(' ', $labelLength - mb_strlen($item['label'], 'UTF-8')) . $item['value'] . "\n";
 				}
 
 			}
@@ -231,27 +231,27 @@ class CliPresenter extends BasePresenter{
 		$compared = $compareResult->getCompared();
 
 		$result = "\n" . $profile1->name .'(' . $profile1->version . ") <-> ";
-		$result .= $profile2->name .'(' . $profile2->version . ") \n" . str_repeat('-', mb_strlen($profile2->name .'(' . $profile2->version . ")") * 2 + 5) . "\n" . str_repeat('-', mb_strlen($profile2->name .'(' . $profile2->version . ")")* 2 + 5) . "\n\n";
+		$result .= $profile2->name .'(' . $profile2->version . ") \n" . str_repeat('-', mb_strlen($profile2->name .'(' . $profile2->version . ")", 'UTF-8') * 2 + 5) . "\n" . str_repeat('-', mb_strlen($profile2->name .'(' . $profile2->version . ")", 'UTF-8')* 2 + 5) . "\n\n";
 
 		$labelLength = 10;
 		$valueLength = 10;
-		$profileName1Length = mb_strlen($profile1->name);
+		$profileName1Length = mb_strlen($profile1->name, 'UTF-8');
 		foreach($parsed1 as $nameGroup => $group){
 			foreach($group as $item){
-				$labelLength = max($labelLength, mb_strlen($item['label']) + 5);
-				$valueLength = max($valueLength, mb_strlen($item['value']) + 5);
+				$labelLength = max($labelLength, mb_strlen($item['label'], 'UTF-8') + 5);
+				$valueLength = max($valueLength, mb_strlen($item['value'], 'UTF-8') + 5);
 			}
 		}
 
 		$result .= str_repeat( ' ', $labelLength) . $profile1->name;
-		$result .= str_repeat( ' ', $profileName1Length + 10 - mb_strlen($profile1->name)) . $profile2->name . "\n" ;
+		$result .= str_repeat( ' ', $profileName1Length + 10 - mb_strlen($profile1->name, 'UTF-8')) . $profile2->name . "\n" ;
 
 		foreach($parsed1 as $nameGroup => $group){
 			foreach($group as $key => $item){
 				if(in_array($nameGroup . '/' . $key, $compared)) {
 					$result .= $item['label'];
-					$result .= str_repeat( ' ', $labelLength - mb_strlen( $item['label'] ) ) . $item['value'];
-					$result .= str_repeat( ' ', $profileName1Length + 10 - mb_strlen( $item['value'] ) ) . $parsed2[$nameGroup][$key]['value'] . "\n";
+					$result .= str_repeat( ' ', $labelLength - mb_strlen( $item['label'], 'UTF-8' ) ) . $item['value'];
+					$result .= str_repeat( ' ', $profileName1Length + 10 - mb_strlen( $item['value'], 'UTF-8' ) ) . $parsed2[$nameGroup][$key]['value'] . "\n";
 				}
 			}
 		}

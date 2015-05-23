@@ -60,6 +60,12 @@ class ProfileParser{
 		$this->parsed['version']['path'] = 'version';
 
 		foreach($this->configurator->getConfigForProfile() as $position => $config) {
+
+			//fix sig int
+			if($config['min'] < 0 && $this->profile[ $position ] > 128){
+				$this->profile[ $position ] = $this->profile[ $position ] - 256;
+			}
+
 			$label = array_map( array( $this, 'getText' ), $config['label'] );
 			$this->parsed[$config['name']]['label'] = join( ' ', $label );
 			$this->parsed[$config['name']]['path'] = join( ' ', $config['label'] );
