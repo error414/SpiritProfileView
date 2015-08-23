@@ -59,6 +59,7 @@ class ProfileParser{
 		$this->parsed['version']['value'] =  $this->configurator->getVersion();
 		$this->parsed['version']['path'] = 'version';
 
+
 		foreach($this->configurator->getConfigForProfile() as $position => $config) {
 
 			//fix sig int
@@ -69,8 +70,6 @@ class ProfileParser{
 			$label = array_map( array( $this, 'getText' ), $config['label'] );
 			$this->parsed[$config['name']]['label'] = join( ' ', $label );
 			$this->parsed[$config['name']]['path'] = join( ' ', $config['label'] );
-			$this->parsed[$config['name']]['min']   = $config['min'];
-			$this->parsed[$config['name']]['max']   = $config['max'];
 
 			//selectBox
 			if ( $config['type'] == 'select' ) {
@@ -79,7 +78,7 @@ class ProfileParser{
 
 			//checkBox
 			if ( $config['type'] == 'check' ) {
-				$this->parsed[$config['name']]['value'] = ( $this->profile[ $position ] == 49 ? $this->configurator->getStringById('yes', $this->lang) : $this->configurator->getStringById('no',$this->lang) );
+				$this->parsed[$config['name']]['value'] = ( $this->profile[ $position ] == $config['max'] || $this->profile[ $position ] == 49? $this->configurator->getStringById('yes', $this->lang) : $this->configurator->getStringById('no',$this->lang) );
 			}
 
 
@@ -96,6 +95,8 @@ class ProfileParser{
 					$this->parsed[$config['name']]['max'] = $config['max'] - $config['discount'];
 				} else {
 					$this->parsed[$config['name']]['value'] = $this->profile[ $position ];
+					$this->parsed[$config['name']]['min']   = $config['min'];
+					$this->parsed[$config['name']]['max']   = $config['max'];
 				}
 
 				if ( $config['translate'] !== NULL ) {

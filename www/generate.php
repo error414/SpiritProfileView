@@ -49,7 +49,6 @@ foreach($diffItemList as $name => $item){
 
 	);
 
-
 	//label
 	preg_match_all('/diffItem\.setLabel\((.*)\)/', $item, $label);
 	unset($label[0]);
@@ -86,6 +85,8 @@ foreach($diffItemList as $name => $item){
 	// checkBox
 	}elseif(strpos($item, 'getValueForCheckBox') !== false) {
 		$configuration[$profileItemList[$name]]['type'] = 'check';
+		$configuration[$profileItemList[$name]]['min'] = $profileItemMin[$name];
+		$configuration[$profileItemList[$name]]['max'] = $profileItemMax[$name];
 	// seekbar
 	}elseif(strpos($item, 'getValueInteger') !== false) {
 		$configuration[$profileItemList[$name]]['min'] = $profileItemMin[$name];
