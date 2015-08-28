@@ -3,6 +3,10 @@ if(!isset($_GET['version'])){
 	die('version must be set');
 }
 
+if(!isset($_GET['mode'])){
+	die('mode must be set');
+}
+
 
 define('SPIRIT_APP', '/Users/petrcada/Documents/android-projects/');
 define('TARGET', '../app/configuration/');
@@ -11,8 +15,17 @@ define('PROFILE',   SPIRIT_APP . 'settigs-mobile/settings/src/com/helpers/Dstabi
 ############################################################################################################
 
 $profileFile = file_get_contents(PROFILE);
-preg_match_all('/profileMap\.put\(\"([^\"]*)\".*new ProfileItem\(([^\,]*),([^\,]*),([^,)]*)/', $profileFile , $profileItemListBuffer);
 
+$start  = 'BUILD_' . strtoupper($_GET['mode']);
+$stop   = 'BUILD_' . strtoupper($_GET['mode']) . '_END';
+preg_match('/' . $start . '.*' . $stop . '/s', $profileFile , $rawProfile);
+
+if(count($rawProfile) == 0)
+{
+	die('no profile mode found');
+}
+
+preg_match_all('/profileMap\.put\(\"([^\"]*)\".*new ProfileItem\(([^\,]*),([^\,]*),([^,)]*)/', $rawProfile[0] , $profileItemListBuffer);
 
 $profileItemList = array_combine($profileItemListBuffer[1],  $profileItemListBuffer[2]);
 $profileItemMin = array_map('trim', array_combine($profileItemListBuffer[1],  $profileItemListBuffer[3]));
@@ -37,6 +50,12 @@ unset($diffItemNames);
 $configuration = array();
 
 foreach($diffItemList as $name => $item){
+
+	if($profileItemList[$name] == '')
+	{
+		continue;
+	}
+
 	$configuration[$profileItemList[$name]] = array(
 		'label'         => NULL,
 		'name'          => $name,
@@ -124,8 +143,8 @@ foreach($diffItemList as $name => $item){
 	}
 }
 
-$targetDir = TARGET . 'configuration_'. $_GET['version'] . '/';
-$targetDirPrew = TARGET . 'configuration_'. ($_GET['version'] - 1) . '/';
+$targetDir = TARGET . $_GET['mode'] . '/configuration_'. $_GET['version'] . '/';
+$targetDirPrew = TARGET . $_GET['mode'] . '/configuration_'. ($_GET['version'] - 1) . '/';
 
 
 if(!is_dir($targetDir)){

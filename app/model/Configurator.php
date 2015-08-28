@@ -8,10 +8,13 @@ namespace Model;
 
 class Configurator{
 
+	const HELI = 'heli';
+	const AERO = 'aero';
+
 	private $version;
 	private $versionDir;
 	private $humanReadVersion;
-
+	private $mode = self::HELI;
 
 	private $string = array('cs' => array(), 'en' => array());
 
@@ -19,22 +22,28 @@ class Configurator{
 	 * @param $profile
 	 */
 	public function __construct($profile){
+		if($profile[1] > 127)
+		{
+			$profile[1] = $profile[1] - 127;
+			$this->mode = self::AERO;
+		}
+
 		//new version
 		if(count($profile) >= 63 && $profile[63] > 0){
 			$this->version          		 = $profile[1] . $profile[63];
-			$this->humanReadVersion          = $profile[1] . '.' . $profile[63];
+			$this->humanReadVersion          = $this->mode . '-' . $profile[1] . '.' . $profile[63];
 
 			if($profile[2] < 128){
 				$this->humanReadVersion .= '.' . $profile[2];
 			}elseif($profile[2] < 220){
-				$this->humanReadVersion .= '.beta' . ($profile[2] - 128);
+				$this->humanReadVersion .= '-beta' . ($profile[2] - 128);
 			}else{
-				$this->humanReadVersion .= '.rc' . ($profile[2] - 220);
+				$this->humanReadVersion .= '-rc' . ($profile[2] - 220);
 			}
 		}else{
 
 			$this->version          = $profile[1] . '' . $profile[2];
-			$this->humanReadVersion = $profile[1] . '.0.' . $profile[2];
+			$this->humanReadVersion = $this->mode . '-' . $profile[1] . '.0.' . $profile[2];
 		}
 	}
 
@@ -46,20 +55,23 @@ class Configurator{
 	}
 
 	/**
+	 *
 	 * @return bool
 	 */
 	public function isValid(){
-		return file_exists(__DIR__ . '/../configuration/configuration_'.$this->version.'/configurator.php');
+		return file_exists(__DIR__ . '/../configuration/'.$this->mode.'/configuration_'.$this->version.'/configurator.php');
 	}
 
 	/**
-	 * @return bool|mixed
+	 *
+	 * @return mixed
+	 * @throws \Exception
 	 */
 	public function getConfigForProfile(){
-		if(file_exists(__DIR__ . '/../configuration/configuration_'.$this->version.'/configurator.php')){
-			return unserialize(file_get_contents(__DIR__ . '/../configuration/configuration_'.$this->version.'/configurator.php'));
+		if(file_exists(__DIR__ . '/../configuration/'.$this->mode.'/configuration_'.$this->version.'/configurator.php')){
+			return unserialize(file_get_contents(__DIR__ . '/../configuration/'.$this->mode.'/configuration_'.$this->version.'/configurator.php'));
 		}
-		throw new \Exception('Source file' .__DIR__ . '/../configuration/configuration_'.$this->version.'/configurator.php not exists' );
+		throw new \Exception('Source file' .__DIR__ . '/../configuration/'.$this->mode.'/configuration_'.$this->version.'/configurator.php not exists' );
 	}
 
 	/**
@@ -69,7 +81,7 @@ class Configurator{
 	 * @throws \Exception
 	 */
 	public function getStringById($id, $lang = 'cs'){
-		if(count($this->string[$lang]) == 0 && file_exists(__DIR__ . '/../configuration/configuration_'.$this->version.'/strings_'.$lang.'.xml')){
+		if(count($this->string[$lang]) == 0 && file_exists(__DIR__ . '/../configuration/'.$this->mode.'/configuration_'.$this->version.'/strings_'.$lang.'.xml')){
 			$this->loadString($lang);
 		}
 
@@ -92,10 +104,10 @@ class Configurator{
 	 * @throws \Exception
 	 */
 	public function getTranslateClass($translateClass){
-		if(file_exists(__DIR__ . '/../configuration/configuration_'.$this->version.'/'.$translateClass.'.php')){
-			include_once(__DIR__ . '/../configuration/configuration_'.$this->version.'/'.$translateClass.'.php');
-			if(class_exists('con'. $this->version . '\\' .$translateClass, false)){
-				$className = ('con'. $this->version . '\\' .$translateClass);
+		if(file_exists(__DIR__ . '/../configuration/'.$this->mode.'/configuration_'.$this->version.'/'.$translateClass.'.php')){
+			include_once(__DIR__ . '/../configuration/'.$this->mode.'/configuration_'.$this->version.'/'.$translateClass.'.php');
+			if(class_exists('con'. $this->version . '_' .$this->mode . '\\' . $translateClass, false)){
+				$className = ('con'. $this->version. '_' .$this->mode . '\\' . $translateClass);
 				return new $className;
 			}
 		}
@@ -111,7 +123,7 @@ class Configurator{
 	 * @throws \Exception
 	 */
 	public function getSelectText($name, $value, $lang = 'cs'){
-		if(count($this->string[$lang]) == 0 && file_exists(__DIR__ . '/../configuration/configuration_'.$this->versionDir.'/strings_'.$lang.'.xml')){
+		if(count($this->string[$lang]) == 0 && file_exists(__DIR__ . '/../configuration/'.$this->mode.'/configuration_'.$this->versionDir.'/strings_'.$lang.'.xml')){
 			$this->loadString($lang);
 		}
 
@@ -130,7 +142,7 @@ class Configurator{
 	 * @param $lang
 	 */
 	private function loadString($lang){
-		$xml = simplexml_load_file(__DIR__ . '/../configuration/configuration_'.$this->version.'/strings_'.$lang.'.xml');
+		$xml = simplexml_load_file(__DIR__ . '/../configuration/'.$this->mode.'/configuration_'.$this->version.'/strings_'.$lang.'.xml');
 		foreach($xml->children() as $item){
 			if(strpos((string)$item->attributes(), 'value') === FALSE) {
 				$this->string[ $lang ][ (string) $item->attributes() ] = (string) $item;

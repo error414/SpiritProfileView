@@ -59,7 +59,6 @@ class ProfileParser{
 		$this->parsed['version']['value'] =  $this->configurator->getVersion();
 		$this->parsed['version']['path'] = 'version';
 
-
 		foreach($this->configurator->getConfigForProfile() as $position => $config) {
 
 			//fix sig int
