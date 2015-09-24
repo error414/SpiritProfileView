@@ -10,7 +10,7 @@ class GovernorRpmMaxProgressExTranslate {
 
 	public function translateCurrent($current)
     {
-        return (($current * 10) + 1500) + " RPM";
+        return (($current * 10) + 1500) . " RPM";
     }
 
 }

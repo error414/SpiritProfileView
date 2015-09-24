@@ -2,7 +2,7 @@
 <resources>
     <string name="xxx">xxxx</string>
     <string name="settings_name_space">settings_name_space</string>
-    <string name="author_name">Spirit System mobile settings\nPetr Čada - error414@error414.com\nTomáš Jędrzejek - tomasj@spirit-system.com\nTomáš Neuberg \n \n sestavení: 23.08.2015-devel</string>
+    <string name="author_name">Spirit System mobile settings\nPetr Čada - error414@error414.com\nTomáš Jędrzejek - tomasj@spirit-system.com\nTomáš Neuberg \n \n sestavení: 30.08.2015-devel</string>
     <string name="author">Autoři</string>
     <string name="credits">Zásluhy</string>
 
@@ -148,7 +148,7 @@
     <string name="x_cyclic">Zisk cykliky</string>
     <string name="y_rool">Y-Křidélka</string>
     <string name="z_yaw">Z-Směrovka</string>
-    <string name="z_rudder">﻿Vrtulkový zisk (znásobení)</string>
+    <string name="rudder_common_gain">﻿Vrtulkový zisk (znásobení)</string>
     <string name="senzivity">Citlivost</string>
     <string name="reverse">Reverz</string>
     <string name="rotation_speed">Rychlost rotace</string>
@@ -168,6 +168,7 @@
     <string name="cyclic_phase">Virtuální pootočení cykliky</string>
     <string name="cyclic_phase_deg">Úhel rotace [°]</string>
     <string name="cyclic_ff">Počáteční reakce cykliky</string>
+    <string name="ff">Počáteční reakce</string>
     <string name="stabi_function">Funkce</string>
     <string name="stabi_col">Kolektiv</string>
     <string name="stabi_roll">Kompenzace momentu pro křidélka</string>
@@ -229,6 +230,17 @@
         <item>Horizontální</item>
         <item>Vertikální</item>
         <item>Vertikální (Top)</item>
+    </string-array>
+
+    <string-array name="aero_position_values">
+        <item>Horizontal (0 deg)</item>
+        <item>Horizontal (180 deg)</item>
+        <item>Horizontal (0 deg + inverted)</item>
+        <item>Horizontal (180 deg + inverted)</item>
+        <item>Vertical (0 deg - left side)</item>
+        <item>Vertical (180 deg - left side)</item>
+        <item>Vertical (0 deg - right side)</item>
+        <item>Vertical (180 deg - right side)</item>
     </string-array>
 
     <string-array name="mix_values">
@@ -307,6 +319,12 @@
         <item>Vypnuto</item>
         <item>Záchrana (Normál)</item>
         <item>Záchrana (Akro)</item>
+        <item>Stabilizace (Normál)</item>
+        <item>Stabilizace (Akro)</item>
+    </string-array>
+
+    <string-array name="aero_function_values">
+        <item>Vypnuto</item>
         <item>Stabilizace (Normál)</item>
         <item>Stabilizace (Akro)</item>
     </string-array>
@@ -550,4 +568,5 @@
     <string name="log_event_gov_out_of_range">Governor RPM mimo rozsah</string>
     <string name="governor_on">Governor</string>
     <string name="governor_spoolup">Rozběh</string>
+    <string name="thr_reverse_warning">Po stisku tlačítka OK bude výstup plynu reverzován. Může se roztočit motor!</string>
 </resources>

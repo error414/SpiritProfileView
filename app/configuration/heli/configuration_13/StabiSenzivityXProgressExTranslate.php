@@ -9,6 +9,6 @@ namespace con13_heli;
 class StabiSenzivityXProgressExTranslate {
     public  function translateCurrent($current)
     {
-        return $current + 20;
+        return ($current + 20) . '%';
     }
 }

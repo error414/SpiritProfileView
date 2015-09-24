@@ -10,6 +10,6 @@ class StabiPichProgressExTranslate {
 
     public function translateCurrent($current)
     {
-        return (($current * 10) . " %");
+        return (($current * 10) . "%");
     }
 }
