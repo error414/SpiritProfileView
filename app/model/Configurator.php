@@ -18,6 +18,8 @@ class Configurator{
 
 	private $string = array('cs' => array(), 'en' => array());
 
+	private $profile;
+
 	/**
 	 * @param $profile
 	 */
@@ -27,9 +29,8 @@ class Configurator{
 			$profile[1] = $profile[1] - 127;
 			$this->mode = self::AERO;
 		}
-
 		//new version
-		if(count($profile) >= 63 && $profile[63] > 0){
+		if((count($profile) >= 63 && $profile[63] > 0) || ($profile[1] > 1)){
 			$this->version          		 = $profile[1] . $profile[63];
 			$this->humanReadVersion          = $this->mode . '-' . $profile[1] . '.' . $profile[63];
 
@@ -45,6 +46,8 @@ class Configurator{
 			$this->version          = $profile[1] . '' . $profile[2];
 			$this->humanReadVersion = $this->mode . '-' . $profile[1] . '.0.' . $profile[2];
 		}
+
+		$this->profile = $profile;
 	}
 
 	/**
@@ -108,7 +111,7 @@ class Configurator{
 			include_once(__DIR__ . '/../configuration/'.$this->mode.'/configuration_'.$this->version.'/'.$translateClass.'.php');
 			if(class_exists('con'. $this->version . '_' .$this->mode . '\\' . $translateClass, false)){
 				$className = ('con'. $this->version. '_' .$this->mode . '\\' . $translateClass);
-				return new $className;
+				return new $className($this->profile);
 			}
 		}
 
