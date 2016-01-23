@@ -2,7 +2,7 @@
 <resources>
     <string name="xxx">xxxx</string>
     <string name="settings_name_space">settings_name_space</string>
-    <string name="author_name">Spirit System mobile settings\nPetr Čada - error414@error414.com\nTomáš Jędrzejek - tomasj@spirit-system.com\nTomáš Neuberg\nDaniel Matloch - danielm@spirit-system.com\n \n build: 30.12.2015-devel</string>
+    <string name="author_name">Spirit System mobile settings\nPetr Čada - error414@error414.com\nTomáš Jędrzejek - tomasj@spirit-system.com\nTomáš Neuberg\nDaniel Matloch - danielm@spirit-system.com\n \n build: 21.01.2016-devel</string>
     <string name="author">Author</string>
     <string name="credits">Credits</string>
     <string name="ok">Ok</string>
@@ -94,19 +94,22 @@
     <string name="cyclic">Cyclic</string>
     <string name="frequency">Frequency</string>
     <string name="pulse">Pulse</string>
-    <string name="rudder_only">Rudder</string>
-    <string name="rudder">Rudder (CH4)</string>
-    <string name="aileron">Aileron (CH1)</string>
-    <string name="elevator">Elevator (CH2)</string>
-    <string name="pitch">Pitch (CH3)</string>
-    <string name="servo_ch1">Aileron (CH1)</string>
+    <string name="rudder">Rudder</string>
+
+    <string name="servo_rudder">Rudder (CH4)</string>
+
+    <string name="servo_ch1">Pitch (CH1)</string>
     <string name="servo_ch2">Elevator (CH2)</string>
-    <string name="servo_ch3">Pitch (CH3)</string>
+    <string name="servo_ch3">Aileron (CH3)</string>
+
+    <string name="servo_ch1_inverted">Aileron (CH1)</string>
+    <string name="servo_ch3_inverted">Pitch (CH3)</string>
+
     <string name="ch1" translatable="false">CH1</string>
     <string name="ch2" translatable="false">CH2</string>
     <string name="ch3" translatable="false">CH3</string>
     <string name="ch4" translatable="false">CH4</string>
-    <string name="servo_travel_correction">Servo travel correction</string>
+    <string name="servo_travel_correction">Servo Travel Correction</string>
     <string name="reg_p">P</string>
     <string name="reg_i">I</string>
     <string name="reg_d">D</string>
@@ -131,12 +134,13 @@
     <string name="cyc_rate">Cyclic</string>
     <string name="rud_rate">Rudder</string>
     <string name="x_picth">X-Pitch</string>
-    <string name="x_cyclic">Cyclic gain</string>
+    <string name="x_cyclic">Cyclic Gain</string>
     <string name="y_rool">Y-Roll</string>
     <string name="z_yaw">Z-Yaw</string>
     <string name="rudder_common_gain">Rudder Common Gain</string>
     <string name="senzivity">Sensitivity</string>
     <string name="reverse">Reverse</string>
+    <string name="ser_reverse">Servo Reverse</string>
     <string name="rotation_speed">Rotation speed</string>
     <string name="rates">Rates</string>
     <string name="stick_deadband">Stick deadband</string>
@@ -145,7 +149,7 @@
     <string name="geom_corr">Geometry correction</string>
     <string name="geom_corr_auto">Automatic</string>
     <string name="rudder_dynamic">Rudder dynamic</string>
-    <string name="rudder_revomix">Rudder revomix</string>
+    <string name="rudder_revomix">Rudder - Revomix</string>
     <string name="rudder_delay">Rudder delay</string>
     <string name="rotor_rotation">Rotor Rotation Direction</string>
     <string name="rotor_rotation_title">Counter-Clockwise</string>
@@ -372,6 +376,7 @@
     <string name="log_event_hang">Main Loop Hang Occurred</string>
     <string name="log_event_rxloss">Receiver Signal Lost</string>
     <string name="log_event_lowvolt">Power Voltage is low</string>
+    <string name="log_event_rxcorrupt">Received Frame was Corrupted</string>
     <string name="log_governor">Governor was Engaged</string>
     <string name="not_log_for_save">None log to save</string>
     <string name="save_log">Save log</string>
@@ -470,10 +475,16 @@
     <string name="st_a030379814acf4a9efd5735573f71718">Cyclic mixing function used on the model.\n\n- In the most cases it is CCPM 120°.</string>
     <string name="st_06edb8aaa795fb406535ad1e42f7ddd9">Receiver type equipped on the model.\n\n- PWM for classical receiver.</string>
     <string name="st_4e74822308285a5d25761bc2c9387dc2">Specifies flight characteristics and stick response behavior.\n\n- Decrease for more constant and linear behavior.\n- Increase for paddle-like steering.\n\n<i>Range: 1 - 8</i></string>
-    <string name="st_6c85d2c73a8b4e3bde0bf54c2335ed20"><b>Amount of collective pitch during rescue activation</b>\n\n-\n            Activate the rescue mode and check collective direction.\n\n<i>Range:\n            0 - 100%</i></string>
-    <string name="st_09d45bb1303880122575711233ac4ac8"><b>Specifies a rate of direction change for stabilization</b>\n\n-\n            Low values are suitable for beginners to achieve coaxial-like behavior.\n-\n            Higher values are suitable for scale flying.\n\n<i>Range: 0 - 5</i></string>
+    <string name="st_23156aa787644331f6b928b0138a8b89">Movement direction of the Aileron servo</string>
+    <string name="st_be917f6b3fe715e4c62861f9729e1258">Movement direction of the Elevator servo</string>
+    <string name="st_e7a0ee9287ffcd5017f33971dfd7a04b">Movement direction of the Aileron/Pitch servo</string>
+    <string name="st_a95ed2ec1c7f619a803847d6f867f5ab">Movement direction of the Rudder servo</string>
+    <string name="st_25e1dad714a36a48c70307e9e98c6839"><b>Amount of collective pitch during rescue activation</b>\n\n- Activate the rescue mode and check collective direction.\n\n<i>Range: 0 - 100%</i></string>
+    <string name="st_1bb89987a641483fa0a25daa7e52d27c"><b>Specifies a rate of direction change for stabilization</b>\n\n- Low values are suitable for beginners to achieve coaxial-like behavior.\n- Higher values are suitable for scale flying.\n\n<i>Range: 0 - 5</i></string>
     <string name="st_64d671d1921bac26046cf0d04da37ff1">Enables special mode for flybared helicopters to be able to use the unit with stabilisation or rescue mode.\n\n- Always disabled for flybarless helicopters.\n- Enabled for flybar helicopters only!</string>
     <string name="st_bd22e71854e51838095b67f8c1d8441d">Steering signal amount during stabilisation or rescue mode.\n\n<i>Range: 0 - 16</i></string>
+    <string name="st_10fb0c0b85ce9243f0580f63f5509dd9"><b>Function activated when gyro gain is negative</b>\n\nDisabled - Rate gyro mode.\nRescue - rescue mode with HL gyro.\nStabilisation - stabilisation mode (Normal/Acro - HL gyro mode, Scale - Rate gyro mode).\nCoaxial - coaxial mode with HL gyro.</string>
+    <string name="st_c6962067146e753eb26dae903a72e046">Enable when turning direction of the rotor head is counterclockwise.\n\n- In the most cases direciton is Clockwise (unticked).</string>
     <string name="st_40ac2993f4b9439ae49d61f0521b121d"><b>Specifies Cyclic Gain</b>\n\n- Mostly from 60 to 70% for optimal results.\n\n<i>Range: 20 - 100%</i></string>
     <string name="st_466a542ef886802f5bbc2c23bc91fd06"><b>Specifies multiplier of Gyro Gain</b>\n\n- 1x for no multiplication.\n- 1.50x for 1.5x multiplication of TX gyro gain.\n- For 500-size and smaller helicopter 1.0x is enough.\n\n<i>Range: 1.00 - 1.50</i></string>
     <string name="st_e1ef2f3a7b6fa63d68cb2b9b2e72a571"><b>Specifies Gyro Gain</b>\n\n- Mostly from 60 to 70% for optimal results.\n- Is inactive if Gyro Gain is configured in the transmitter.\n\n<i>Range: -100 - +100%</i></string>
@@ -482,20 +493,21 @@
     <string name="st_6c27918077d556edb488f0516b5965b6"><b>Aggressiveness of aileron/elevator stick response</b>\n\n- Increase for more direct feel.\n- Decrease for smooth behavior.\n\n<i>Range: 1 - 12</i></string>
     <string name="st_cdf89e8bd20739bdc69e8c3bd7e1ae17"><b>Specifies degree of which cyclic has to be rotated</b>\n\n- Used in some multi-rotor heads.\n- Mostly configured to 0.\n\n<i>Range: -90 - +90</i></string>
     <string name="st_45b61e5018b2249985746acf8e3424b3"><b>Elevator debounce amount</b>\n\n- Increase when elevator bounce is visible during agressive elevator movement.\n- Mostly configured to 1.\n\n<i>Range: 0 - 4</i></string>
-    <string name="st_8c476c8af5f748d8bd22e845c1ab5991"><b>Increase/decrease value until blades pitch is at 6 degress</b>\n\n-\n            Ideally between 90 - 150.\n- Set this after Servo Subtrim is configured.\n\n<i>Range:\n            64 - 250</i></string>
+    <string name="st_6758e8b02736ba47f992c8a921bd6eae"><b>Increase/decrease value until blades pitch is at 6 degress</b>\n\n- Ideally between 90 - 150.\n- Set this after Servo Subtrim is configured.\n\n<i>Range: 64 - 250</i></string>
     <string name="st_a09dcd0b0fd2a8ed24f9d8a81b66668f"><b>Specifies heading hold performance</b>\n\n- Mostly between 155 - 180.\n\n<i>Range: 130 - 250</i></string>
     <string name="st_28953f535f7d4bbe0b04ab8ffcbf3fde"><b>Eliminates pitchup effect</b>\n\n- Mostly configured to 0.\n- Increase when pitchup is visible.\n\n<i>Range: 0 - 4</i></string>
     <string name="st_88ffaae209a942ffdcbf08d25ada6106"><b>Specifies delay of the rudder</b>\n\n- Very fast servo:	0 - 5\n- Fast servo:	5 - 15\n- Slow servo:	15 - 20\n- Analog servo:	20 - 25\n\n<i>Range: 0 - 30</i></string>
     <string name="st_050eaf6851d88f98084291c19b591a0d"><b>Aggressiveness of rudder response</b>\n\n- Increase for harder rudder stop behavior.\n- Decrease if rudder bounce-back occurs.\n\n<i>Range: 3 - 10</i></string>
-    <string name="st_fefe3127debbbf721ceaa73a38980935"><b>Precompensation for collective pitch movement</b>\n\n-\n            Mostly in the middle (0).\n\n<i>Range: 0 - 10</i></string>
+    <string name="st_0d024298132ffb58bce4dce98affdb86"><b>Precompensation for collective pitch movement</b>\n\n- Mostly is 0.\n\n<i>Range: 0 - 10</i></string>
     <string name="st_9a77db935bc1b64ee6402e6c8d019d44">Enables extended signal processing\n\n- Normally should be disabled.\n- Used for operation with extreme vibrations.</string>
     <string name="st_02282a0a0af7a569d19732b906395ed5">Range around stick center where movement is zero.\n\n<i>Range: 4 - 30</i></string>
     <string name="st_e11bdb4cd957e81f87afdc4b2c3134fe">Specifies minimum travel limit for the rudder servo.\n\n<i>Range: 32 - 255</i></string>
     <string name="st_08a5a1e5848935703bcc7d12cf34f318">Specifies maximum travel limit for the rudder servo.\n\n<i>Range: 32 - 255</i></string>
-    <string name="st_7cc4666bd794d5e30b2468fdc2531c27"><b>Specifies range of the cyclic servo travel for aileron and elevator</b>\n\n-\n            Increase this parameter as much as possible.\n- Carefully check for any\n            binding!\n- Do not exceed angle that is allowed for the model!\n\n<i>Range:\n            32 - 255</i></string>
+    <string name="st_cb447c2f52a1170da6ca24c5875ba250"><b>Specifies range of the cyclic servo travel for aileron and elevator</b>\n\n- Increase this parameter as much as possible.\n- Carefully check for any binding!\n- Do not exceed angle that is allowed for the model!\n\n<i>Range: 32 - 255</i></string>
     <string name="st_b81fcebbff4a29a95ef70e6621eb8f71">Specifies range of the collective pitch for both positive and negative positions.\n\n<i>Range: 32 - 255</i></string>
-    <string name="st_7c09329c71c61ae71968596a17d133ae">Specifies bottom limit of the throttle range.\n\n- Can be used to\n            match preconfigured throttle range of the ESC.\n- For nitro and gasser set the\n            limit for the lowest position of the throttle servo horn.\n- Behaves similarly\n            as a subtrim function.\n\n<i>Range: 700 - 1300</i></string>
-    <string name="st_e854e9f79a44f31d6ed382972c01d4f0">Specifies upper limit of the throttle range.\n\n- Can be used to\n            match preconfigured throttle range of the ESC.\n- For nitro and gasser set the\n            limit for the highest position of the throttle servo horn.\n\n<i>Range:\n            1700 - 2300</i></string>
+    <string name="st_3104a8b88d16fea1d7340e06f4f4628f">Specifies bottom limit of the throttle range.\n\n- Can be used to match preconfigured throttle range of the ESC.\n- For nitro and gasser set the limit for the lowest position of the throttle servo horn.\n- Behaves similarly as a subtrim function.\n\n<i>Range: 700 - 1300</i></string>
+    <string name="st_e3f7aaeec7262407e622dfb1b79181ab">Specifies upper limit of the throttle range.\n\n- Can be used to match preconfigured throttle range of the ESC.\n- For nitro and gasser set the limit for the highest position of the throttle servo horn.\n\n<i>Range: 1700 - 2300</i></string>
+    <string name="st_5f6a222244b449ed513ffe39b532715e">Speficies value that will be added for immediate and smooth spin up of the motor..\n\n- If spoolup is too agressive at the beginning decrease the value.\n- If there is delay before spoolup increase the value.\n- Default value of 50 should work fine in the most cases.\n\n<i>Range: 10 - 200</i></string>
     <string name="st_cffee8820dbdc898c99db0f0350440f4">Specifies Sensing Divider of the sensor.\n\n- For electric helicopters it is always Motor Poles / 2 (For a 10 pole motor configure value of 5).\n- For nitro and gasser helicopters the value is magnet count.\n\n<i>Range: 1 - 8</i></string>
     <string name="st_e4df1e47f3a179a3867c07d758619a1c">Specifies direction of the throttle.\n\n- Mostly used only for Nitro/Gasser helicopters.\n- Reverse for the correct throttle servo movement.</string>
     <string name="st_794fca310ce523ae9cda3e4a0f9c5b1d">Specifies helicopter Gear Ratio.\n\n- Main Gear teeth / Pinion teeth.\n\n<i>Range: 1.0 - 12.7</i></string>
@@ -509,12 +521,12 @@
     <string name="st_54ceaabd2d8cca5320e800e9851b6ff3">Specifies subtrim value of the CH4 servo.\n\n<i>Range: -127 - 127</i></string>
     <string name="st_cc41c2874a69e4ae7c3f2385ec481160">Specifies Governor spoolup rate.</string>
     <string name="st_e6a7a3cb5827ad43acc85eac1898573a">Specifies Throttle output frequency.</string>
-    <string name="st_e21b7c7908ad7f4057fc65c8e55b184b">Specifies travel correction for the CH1 servo - maximum position.\n\n<i>Range: -64 - 64</i></string>
-    <string name="st_36336300263470149f9e2ee28a7621de">Specifies travel correction for the CH2 servo - maximum position.\n\n<i>Range: -64 - 64</i></string>
-    <string name="st_40a11b06d8a940ef721fa12dbe376de9">Specifies travel correction for the CH3 servo - maximum position.\n\n<i>Range: -64 - 64</i></string>
-    <string name="st_fb307e664b31575b9cf959529f4f0159">Specifies travel correction for the CH1 servo - minimum position.\n\n<i>Range: -64 - 64</i></string>
-    <string name="st_65d7a7bb821a6b7a7896e45dc671f4e6">Specifies travel correction for the CH2 servo - minimum position.\n\n<i>Range: -64 - 64</i></string>
-    <string name="st_3fd8f4fd6b1c3ac27c28ebd523ead1e4">Specifies travel correction for the CH3 servo - minimum position.\n\n<i>Range: -64 - 64</i></string>
+    <string name="st_ed310c7971c2c68eb470582edc55e4bc">Specifies travel correction for the CH1 servo - negative angle.\n\n<i>Range: -64 - 64</i></string>
+    <string name="st_e65b23e5ee819925adc8528b057de732">Specifies travel correction for the CH2 servo - negative angle.\n\n<i>Range: -64 - 64</i></string>
+    <string name="st_e0190df24285d7fbcd471cdd56c434d6">Specifies travel correction for the CH3 servo - negative angle.\n\n<i>Range: -64 - 64</i></string>
+    <string name="st_394f59a5d0657b8bd984cf5c653ff47c">Specifies travel correction for the CH1 servo - positive angle.\n\n<i>Range: -64 - 64</i></string>
+    <string name="st_d2fc1adb2cb1077f97a2796f6f6468fd">Specifies travel correction for the CH2 servo - positive angle.\n\n<i>Range: -64 - 64</i></string>
+    <string name="st_65664b6c1cbace3d687615342a2374a1">Specifies travel correction for the CH3 servo - positive angle.\n\n<i>Range: -64 - 64</i></string>
     <string name="st_a257dd5c98c91e67d5c02cfc2f439202"><b>RPM Sensor Filter</b>\n\n- Reduces excess noise from RPM sensor.\n- In case of unstable RPM readout increase the value.\n- In case of delayed RPM response decrease the value.\n- Usually configured to 6.\n\n<i>Range: 1 - 8</i></string>
     <string name="st_698dbfa44b9af463920bb489c14c81a2">Determine when the helicopter will recover from the inverted flight.\n\n<i>Range: 0 - 3.0 seconds</i></string>
     <!--  END AUTO GENERATE STUB -->
@@ -542,7 +554,7 @@
     <string name="pdf_reader_not_found">PDF Reader not found \nPlease install PDF reader \n\n* Adobe Reader \n* Foxit MobilePDF\n* MuPDF</string>
     <string name="colective">Pit.</string>
     <string name="advanced_expert">Expert settings</string>
-    <string name="senzor">Senzor</string>
+    <string name="senzor">Sensor</string>
     <string name="cant_stop_activity_when_test_running">Before leaving please stop test</string>
     <string name="bec_test_stop">BEC test was finished! In case that the unit is still running and any unusual behavior does not happened then your power supply is suitable.</string>
     <string name="log_event_gov_out_of_range">Governor RPM out of range</string>
@@ -562,7 +574,7 @@
     <string name="factory_settings">Factory settings</string>
     <string name="factory_settings_confirm">Do you want to reset the unit to factory settings?</string>
     <string name="factory_settings_done">Resetting to factory settings succesfully finished.</string>
-    <string name="receiver_was_change">Receiver type was changed in the unit settings.\n\nIt\'s necessary to save it and then reconnect battery.</string>
+    <string name="receiver_was_change">Your receiver type was changed.\n\nPlease save the settings and restart your unit to apply new configuration.</string>
     <string name="profile_not_match">Selected profile was created with a different software version (%1$s)!  Double check all loaded values, please.</string>
     <string name="acro_delay">Acro Delay</string>
     <string name="rpm_senzor_filter">RPM Sensor Filter</string>
@@ -580,4 +592,8 @@
     <string name="negative_pitch">Negative pitch</string>
 
     <string name="governor_rampup">Spoolup Rampup</string>
+    <string name="failsafe">Failsafe</string>
+    <string name="set_failsafe">Set Failsafe</string>
+    <string name="failsafe_configured">Failsafe values were successfully configured.</string>
+    <string name="tester_state">Tester state</string>
 </resources>

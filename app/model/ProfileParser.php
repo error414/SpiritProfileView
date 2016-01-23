@@ -6,6 +6,8 @@
 
 namespace Model;
 
+use con20_heli\LabelTranslate;
+
 class ProfileParser{
 
 	private $profile = array();
@@ -48,6 +50,12 @@ class ProfileParser{
 	}
 
 	public function getText($id){
+		if(strpos($id, ':') != 0)
+		{
+			$labelTranslate = new LabelTranslate();
+			$id = $labelTranslate->translateCurrent($this->profile, $id);
+		}
+
 		return $this->configurator->getStringById($id, $this->lang);
 	}
 
