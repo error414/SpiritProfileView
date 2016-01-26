@@ -130,8 +130,13 @@ class ProfilePresenter extends BasePresenter
     		}
             
         }catch(\Exception $e){
-			$this->flashMessage($e->getMessage());
-			return;
+			if($e instanceof  Nette\Application\AbortException)
+	        {
+	            throw $e;
+	        }else{
+	            $this->flashMessage($e->getMessage());
+	        }
+			 return;
 		}
         
 		if($this->template->parser->isValid()){
@@ -144,7 +149,8 @@ class ProfilePresenter extends BasePresenter
 	 */
 	protected function errorFile($text){
 		$this->flashMessage($text, 'error');
-		$this->redirect('efile');
+		$this->forward('efile');
+		exit();
 	}
 
 

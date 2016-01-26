@@ -7,8 +7,13 @@
 namespace con13_heli;
 
 class StabiSenzivityYProgressExTranslate {
-    public  function translateCurrent($current)
+    public  function translateCurrent($current, $profile, $position, $configurator, $lang)
     {
+        if($position == 0 && $profile[57] != 7){
+            return $configurator->getStringById('in_transmitter', $lang);
+        }
+
+
         return ($current - 100) . '%';
     }
 }

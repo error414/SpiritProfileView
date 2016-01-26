@@ -107,9 +107,9 @@ class ProfileParser{
 				}
 
 				if ( $config['translate'] !== NULL ) {
-					$this->parsed[$config['name']]['value'] = $this->configurator->getTranslateClass( $config['translate'] )->translateCurrent($this->parsed[$config['name']]['value']);
-					$this->parsed[$config['name']]['max'] = $this->configurator->getTranslateClass( $config['translate'] )->translateCurrent($this->parsed[$config['name']]['max']);
-					$this->parsed[$config['name']]['min'] = $this->configurator->getTranslateClass( $config['translate'] )->translateCurrent($this->parsed[$config['name']]['min']);
+					$this->parsed[$config['name']]['value'] = $this->configurator->getTranslateClass( $config['translate'] )->translateCurrent($this->parsed[$config['name']]['value'], $this->profile, 0, $this->configurator, $this->lang);
+					$this->parsed[$config['name']]['max'] = $this->configurator->getTranslateClass( $config['translate'] )->translateCurrent($this->parsed[$config['name']]['max'], $this->profile, 1, $this->configurator, $this->lang);
+					$this->parsed[$config['name']]['min'] = $this->configurator->getTranslateClass( $config['translate'] )->translateCurrent($this->parsed[$config['name']]['min'], $this->profile, 2, $this->configurator, $this->lang);
 				}
 			}
 		}
