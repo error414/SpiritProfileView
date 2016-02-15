@@ -85,7 +85,7 @@ class ProfileParser{
 
 			//checkBox
 			if ( $config['type'] == 'check' ) {
-				$this->parsed[$config['name']]['value'] = ( $this->profile[ $position ] == $config['max'] || $this->profile[ $position ] == 49? $this->configurator->getStringById('yes', $this->lang) : $this->configurator->getStringById('no',$this->lang) );
+				$this->parsed[$config['name']]['value'] = ( $this->profile[ $position ] == 49 ||  $this->profile[ $position ] == 1? $this->configurator->getStringById('yes', $this->lang)  : $this->configurator->getStringById('no',$this->lang) );
 			}
 
 
