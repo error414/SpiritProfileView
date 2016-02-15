@@ -22,6 +22,8 @@ class LabelTranslate {
         $isReversed = array(
             'R.string.servo_ch1' => 1,
             'R.string.servo_ch3' => 1,
+            'R.string.right_limit' => 1,
+            'R.string.left_limit' => 1,
         );
 
         if(isset($isReversed[$label[0]]))

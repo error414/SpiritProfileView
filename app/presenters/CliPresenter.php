@@ -146,7 +146,7 @@ class CliPresenter extends BasePresenter{
 
 		$result = '';
 		foreach($profiles as $profile){
-			$result .= '[' . $profile->id . ']' . str_repeat(' ', 4 - mb_strlen((string)$profile->id), 'UTF-8') . $profile->name . str_repeat(' ', $nameLength - mb_strlen($profile->name, 'UTF-8')). $profile->version . "\n";
+			$result .= '[' . $profile->id . ']' . str_repeat(' ', 4 - mb_strlen((string)$profile->id, 'UTF-8')) . $profile->name . str_repeat(' ', $nameLength - mb_strlen($profile->name, 'UTF-8')). $profile->version . "\n";
 		}
 
 		return $result;
