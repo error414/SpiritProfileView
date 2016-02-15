@@ -42,9 +42,16 @@ class Configurator{
 				$this->humanReadVersion .= '-rc' . ($profile[2] - 220);
 			}
 		}else{
+			//special version 1.1.0
+			if($profile[1] == 1 && $profile[2] == 1 && $profile[63] == 0){
+				$this->version          		 = $profile[1] . $profile[2];
+				$this->humanReadVersion = $this->mode . '-' . $profile[1] . '.'.$profile[2].'.' . $profile[63];
+			}else{
+				$this->version          = $profile[1] . '' . $profile[2];
+				$this->humanReadVersion = $this->mode . '-' . $profile[1] . '.0.' . $profile[2];
+			}
 
-			$this->version          = $profile[1] . '' . $profile[2];
-			$this->humanReadVersion = $this->mode . '-' . $profile[1] . '.0.' . $profile[2];
+
 		}
 
 		$this->profile = $profile;
