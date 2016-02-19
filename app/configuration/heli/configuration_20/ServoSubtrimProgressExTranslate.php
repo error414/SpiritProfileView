@@ -10,6 +10,6 @@ class ServoSubtrimProgressExTranslate {
 
     public function translateCurrent($current)
     {
-        return ($current - 127);
+        return ($current - 128);
     }
 }

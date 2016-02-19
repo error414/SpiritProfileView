@@ -28,7 +28,7 @@ class LabelTranslate {
 
         if(isset($isReversed[$label[0]]))
         {
-            return $profile[6] % 2 == 1 ? $label[0] : $label[1];
+            return $profile[6] % 2 == 1 && $profile[6] < 71 ? $label[0] : $label[1];
         }
 
 
