@@ -230,7 +230,7 @@
     </string-array>
     
     <string-array name="cyclic_pulse_value">
-        <item>1520us</item>
+        <item>1520μs</item>
     </string-array>
     
     <string-array name="cyclic_frequency_value">
@@ -243,9 +243,9 @@
     </string-array>
     
     <string-array name="rudder_pulse_value">
-        <item>1520us</item>
-        <item>960us</item>
-        <item>760us</item>
+        <item>1520μs</item>
+        <item>960μs</item>
+        <item>760μs</item>
     </string-array>
     
      <string-array name="rudder_frequency_value">

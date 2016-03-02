@@ -239,7 +239,7 @@
         <item>CH2 &amp; CH3</item>
     </string-array>
     <string-array name="cyclic_pulse_value">
-        <item>1520us</item>
+        <item>1520μs</item>
     </string-array>
     <string-array name="cyclic_frequency_value">
         <item>50Hz</item>
