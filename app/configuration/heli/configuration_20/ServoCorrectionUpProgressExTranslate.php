@@ -10,6 +10,6 @@ class ServoCorrectionUpProgressExTranslate {
 
     public function translateCurrent($current)
     {
-        return ($current - 127) * -1;
+        return ($current - 127);
     }
 }
