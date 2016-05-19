@@ -1,5 +1,0 @@
-
-RewriteEngine On
-RewriteCond %{REQUEST_URI} !^/www.* [NC]
-RewriteRule ^(.*)$ http://profile/www/$1 [R=301,QSA,L]
-#RewriteRule ^(.*)$ http://4dsviewer.spirit-system.com/www/$1 [R=301,QSA,L]
