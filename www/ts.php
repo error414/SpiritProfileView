@@ -15,6 +15,7 @@ foreach($xml as $items){
 
 	        if((string)$attr['filename'] != '') {
 		        echo '<b>' . $message->source . '</b>';
+		        echo '<hr>';
 		        echo $message->oldsource;
 	        }else{
 	            echo $message->source;

@@ -29,8 +29,6 @@ class ProfileParser{
 			$this->profile[$key + 1] = hexdec(bin2hex($item));
 		}
 		$this->configurator = new Configurator($this->profile);
-		var_dump($this->configurator->getConfigForProfile());
-		die();
 		if($this->configurator->isValid()) {
 			$this->parse();
 		}

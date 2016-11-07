@@ -8,7 +8,7 @@ if(!isset($_GET['mode'])){
 }
 
 
-define('SPIRIT_APP', '/Users/petrcada/Documents/android-projects/');
+define('SPIRIT_APP', '/Users/petrcada/Documents/android/');
 define('TARGET', '../app/configuration/');
 define('DIFF',      SPIRIT_APP . 'settigs-mobile/settings/src/com/spirit/DiffActivity.java');
 define('PROFILE',   SPIRIT_APP . 'settigs-mobile/settings/src/com/helpers/DstabiProfile.java');
