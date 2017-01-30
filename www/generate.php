@@ -30,7 +30,6 @@ preg_match_all('/profileMap\.put\(\"([^\"]*)\".*new ProfileItem\(([^\,]*),([^\,]
 $profileItemList = array_combine($profileItemListBuffer[1],  $profileItemListBuffer[2]);
 $profileItemMin = array_map('trim', array_combine($profileItemListBuffer[1],  $profileItemListBuffer[3]));
 $profileItemMax = array_map('trim', array_combine($profileItemListBuffer[1],  $profileItemListBuffer[4]));
-
 ############################################################################################################
 
 $diffFile = file_get_contents(DIFF);
@@ -51,7 +50,7 @@ $configuration = array();
 
 foreach($diffItemList as $name => $item){
 
-	if($profileItemList[$name] == '')
+	if($profileItemList[$name] == '' || ($name == 'SERVO_TYPE' && $_GET['mode'] == 'AERO'))
 	{
 		continue;
 	}

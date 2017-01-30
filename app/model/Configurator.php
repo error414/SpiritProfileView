@@ -164,5 +164,10 @@ class Configurator{
 		}
 	}
 
+	public function getMode()
+    {
+        return $this->mode;
+    }
+
 
 }

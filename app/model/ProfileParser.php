@@ -53,7 +53,7 @@ class ProfileParser{
 		if(strpos($id, ':') != 0)
 		{
 			$labelTranslate = new LabelTranslate();
-			$id = $labelTranslate->translateCurrent($this->profile, $id);
+			$id = $labelTranslate->translateCurrent($this->profile, $id, $this->configurator->getMode());
 		}
 
 		return $this->configurator->getStringById($id, $this->lang);

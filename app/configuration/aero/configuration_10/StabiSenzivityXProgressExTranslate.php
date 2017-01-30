@@ -4,11 +4,11 @@
  * Time: 7:51
  */
 
-namespace con13_aero;
+namespace con10_aero;
 
 class StabiSenzivityXProgressExTranslate {
     public  function translateCurrent($current)
     {
-        return ($current + 20) . '%';
+        return ($current . " %");
     }
 }
