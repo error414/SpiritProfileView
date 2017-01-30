@@ -2,7 +2,7 @@
 <resources>
     <string name="xxx">xxxx</string>
     <string name="settings_name_space">settings_name_space</string>
-    <string name="author_name">Spirit System mobile settings\nPetr Čada - error414@error414.com\nTomáš Jędrzejek - tomasj@spirit-system.com\nTomáš Neuberg\nDaniel Matloch - danielm@spirit-system.com \n \n sestavení: 02.11.2016-release</string>
+    <string name="author_name">Spirit System mobile settings\nPetr Čada - error414@error414.com\nTomáš Jędrzejek - tomasj@spirit-system.com\nTomáš Neuberg\nDaniel Matloch - danielm@spirit-system.com \n \n sestavení: 30.01.2017-devel</string>
     <string name="author">Autoři</string>
     <string name="credits">Zásluhy</string>
 
@@ -39,6 +39,7 @@
     <string name="connection_error">Chyba spojení</string>
     <string name="copy_bank_error">Kopírovaní nastavení banky se nepovedlo</string>
 
+    <string name="flaps">Klapky</string>
 
     <string name="BT_connection_progress">Probíhá připojování</string>
 
@@ -68,9 +69,25 @@
             Ujistěte se, že během testu není žádné servo horké. Pokud ano, je nutné ihned zastavit testování.&lt;/b&gt;
         &lt;/p&gt;
     </string>
+
+    <string name="aero_bec_tester_note">
+        &lt;p&gt;
+            &lt;b&gt;BEC tester&lt;/b&gt; je užitečný nástroj pro ověření, zda je palubní napájení modelu schopno
+            dodat potřebný proud. Nástroj pohybuje všemi servy po dobu 20 sekund.
+        &lt;/p&gt;
+        &lt;p&gt;
+            V případě, že napájení není vhodné, je možné pozorovat zpomalení serv. Klesne-li napětí pod 1.9V, může dojít až k
+            restartu jednotky.
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;b&gt;Výrazně doporučujeme odpojit motor nebo vrtuli,  neboť může nastat
+            nepředvídatelné chování!&lt;/b&gt; &lt;b&gt; Ujistěte se, že během testu není žádné servo horké. Pokud ano, je nutné ihned zastavit testování.&lt;/b&gt;
+        &lt;/p&gt;
+    </string>
+
     <string name="pitch_pump">Akcelerace kolektivu (Pitch Pump Booster)</string>
     <string name="stabi_col_warning_header">Pozor</string>
-    <string name="stabi_col_warning">Hodnota mezi -30% až 30% může být příliš nízká!</string>
+    <string name="stabi_col_warning">Hodnota mezi 0% až 30% může být příliš nízká!</string>
 
     <string name="senzor_button_text">Senzor</string>
     <string name="senzor_senzivity_button_text">Citlivost</string>
@@ -115,8 +132,19 @@
     <string name="servo_ch0">Výškovka 2 (CH0)</string>
     <string name="servo_ch3">Křidélka (CH3)</string>
 
+    <string name="aero_servo_ch1">Křidélka (CH1)</string>
+    <string name="aero_servo_ch2">Výškovka (CH2)</string>
+    <string name="aero_servo_ch3">Křidélka (CH3)</string>
+    <string name="aero_servo_ch4">Směrovka (CH4)</string>
+    <string name="aero_servo_ch0">Výškovka (CH0)</string>
+
+    <string name="rescue_inclination">Stoupání záchrany</string>
+
     <string name="servo_ch1_inverted">Křidélka (CH1)</string>
     <string name="servo_ch3_inverted">Kolektiv (CH3)</string>
+
+    <string name="aero_servo_ch1_inverted">Elevon (CH1)</string>
+    <string name="aero_servo_ch3_inverted">Elevon (CH3)</string>
 
     <string name="servo_travel_correction">Korekce dráhy serv</string>
 
@@ -181,6 +209,13 @@
     <string name="stabi_fbmode">Pádlová mechanika</string>
     <string name="stabi_fbmode_en">Povolit</string>
     <string name="stabi_ctrldir">Míra změny směru</string>
+    <string name="limit_range_elevon">Rozsah pro elevon</string>
+    <string name="limit_range_ail">Rozsah křidélek</string>
+    <string name="limit_range_ele">Rozsah výškovky</string>
+    <string name="limit_range_rud">Rozsah směrovky</string>
+
+    <string name="thr_range">Rozsah plynu</string>
+    <string name="thr_reverse">Reverz plynu</string>
 
 	<string name="profile_diff">Provedené změny</string>
     <string name="profile_bank_diff">Porovnání</string>
@@ -240,14 +275,14 @@
     </string-array>
 
     <string-array name="aero_position_values">
-        <item>Horizontal (0 deg)</item>
-        <item>Horizontal (180 deg)</item>
-        <item>Horizontal (0 deg + inverted)</item>
-        <item>Horizontal (180 deg + inverted)</item>
-        <item>Vertical (0 deg - left side)</item>
-        <item>Vertical (180 deg - left side)</item>
-        <item>Vertical (0 deg - right side)</item>
-        <item>Vertical (180 deg - right side)</item>
+        <item>Horizontální (0°)</item>
+        <item>Horizontální (180°)</item>
+        <item>Horizontální (0° + obráceně)</item>
+        <item>Horizontální (180° + obráceně)</item>
+        <item>Vertikální (0° - levá strana)</item>
+        <item>Vertikální (180° - levá strana)</item>
+        <item>Vertikální (0° - pravá strana)</item>
+        <item>Vertikální (180° - pravá strana)</item>
     </string-array>
 
     <string-array name="mix_values">
@@ -259,6 +294,11 @@
         <item>CCPM 140° (obráceně)</item>
         <item>CCPM 90°</item>
         <item>CCPM 90° (Velos)</item>
+    </string-array>
+
+    <string-array name="aero_model_values">
+        <item>Letadlo</item>
+        <item>Samokřídlo</item>
     </string-array>
 
     <string-array name="flight_style_values">
@@ -338,6 +378,8 @@
 
     <string-array name="aero_function_values">
         <item>Vypnuto</item>
+        <item>Záchrana (Normál)</item>
+        <item>Záchrana (Akro)</item>
         <item>Stabilizace (Normál)</item>
         <item>Stabilizace (Akro)</item>
     </string-array>
@@ -396,6 +438,23 @@
         <item>F: Analýza vibrací (Z)</item>
     </string-array>
 
+    <string-array name="aero_general_function_values">
+        <item>nepřiřazena</item>
+        <item>P: Zisk gyra - Křidélka</item>
+        <item>P: Zisk gyra - Výškovka</item>
+        <item>P: Zisk gyra - Směrovka</item>
+        <item>P: Stoupání záchrany</item>
+        <item>P: Míra změny směru</item>
+        <item>P: Počáteční reakce</item>
+        <item>P: Pásmo necitlivosti kniplů</item>
+        <item>P: Diferenciace křidélek</item>
+        <item>F: Výstup na CH0</item>
+        <item>F: Analýza vibrací (X)</item>
+        <item>F: Analýza vibrací (Y)</item>
+        <item>F: Analýza vibrací (Z)</item>
+        <item>F: Nastavení trimů</item>
+    </string-array>
+
     <string-array name="general_function_channels_values">
         <item>nepřiřazen</item>
         <item>5. kanál</item>
@@ -404,6 +463,18 @@
         <item>9. kanál</item>
         <item>10. kanál</item>
     </string-array>
+
+    <string-array name="aero_general_function_channels_values">
+        <item>nepřiřazen</item>
+        <item>5. kanál</item>
+        <item>6. kanál</item>
+        <item>7. kanál</item>
+        <item>8. kanál</item>
+        <item>9. kanál</item>
+        <item>10. kanál</item>
+    </string-array>
+
+    <string name="aileron_diferential">Diferenciace křidélek</string>
 
     <string name="location">Umístění</string>
     <string name="language">Jazyk</string>
@@ -434,6 +505,19 @@
     <string name="log_event_lowvolt">Napájecí napětí je příliš nizké</string>
     <string name="log_event_rxcorrupt">Přijatý rámec dat byl poškozen</string>
     <string name="log_governor">Governor byl aktivován</string>
+
+
+    <string name="aero_log_event_ok">Vše vypadá v pořádku</string>
+    <string name="aero_log_event_ail">Překročen limit křidélek</string>
+    <string name="aero_log_event_ele">Překročen limit výškovky</string>
+    <string name="aero_log_event_rud">Překročen limit směrovky</string>
+    <string name="aero_log_event_vib">Úroveň vibrací je příliš vysoká</string>
+    <string name="aero_log_event_hang">Hlavní smyčka programu uvázla</string>
+    <string name="aero_log_event_lost">Ztracen signál přijímače</string>
+    <string name="aero_log_event_power_low">Napájecí napětí je příliš nízké</string>
+    <string name="aero_log_event_receiver_corrupted">Přijatý rámec dat byl poškozen</string>
+
+
     <string name="not_log_for_save">Žádný záznam letu k uložení</string>
     <string name="save_log">Uložit záznam letu</string>
 
@@ -542,7 +626,7 @@
     <string name="st_01afee5397611366de3a5e6da7c5038b"><b>Pozice umístění jednotky na modelu.</b>\n\n- Šipka ukazuje směr letu / přední stranu modelu.</string>
     <string name="st_d4bfa2b36139037ef919259fb6f51202"><b>Funkce mixování cykliky použitá na modelu.</b>\n\n- Nejčastěji se jedná o CCPM 120°.\n- Horní strana schématu odpovídá přední straně modelu.</string>
     <string name="st_c1c951e424ede1830bd95eb316a91e27"><b>Typ přijímače na modelu.</b>\n\n- PWM pro klasický typ přijímače.</string>
-    <string name="st_46729693df4892afe639d338f88da1d4"><b>Nastavuje chování modelu a jeho letové vlastnosti.</b>\n\n- Uberte pro konstantnější a lineárnější řízení.\n- Přidejte pro dosažení chování pádlové mechaniky.\n\n<i>Rozsah: 1 - 8</i></string>
+    <string name="st_46729693df4892afe639d338f88da1d4">Nastavuje chování modelu a jeho letové vlastnosti.\n\n- Uberte pro konstantnější a lineárnější řízení.\n- Přidejte pro dosažení chování pádlové mechaniky.\n\n<i>Rozsah: 1 - 8</i></string>
     <string name="st_6e74cf3b84ed91aaf999ffeb64829110">Směr pohybu serva CH1</string>
     <string name="st_6852e0316d4638c69de832cec1b041e5">Směr pohybu serva CH2</string>
     <string name="st_61aac7234bc41e7cf51ed4132711b43d">Směr pohybu serva CH3</string>
@@ -605,7 +689,25 @@
     <string name="st_3a2a8ea65f77548d39ba67c407ba27db"><b>Zaškrtněte, pokud je rotorová hlava řízena odtokovou hranou nebo obsahuje mixovací páky.</b>\n\n- Ve většině případů je volba neaktivní (není zaškrtnutá).</string>
     <string name="st_96e10343a6db292f2b80abd5ade2f377">Přiřazení funkce vybranému kanálu.\n\nPohyb kanálů by měl odpovídat pohybu pák/přepínačů vysílače.\n\n<b>Číslování kanálů nemusí odpovídat číslování vysílače!</b></string>
     <string name="st_010ad6eeed1c38b101d23cfceec5abdf"><b>Prodleva Autorotace Bailout</b>\n\n- Určuje dobu za kterou motor dosáhne požadované otáčky poté, co byla použita funkce Autorotace Bailout.\n- Nejčastěji je 3.\n\n<i>Rozsah: 1 - 6 sekund</i></string>
-    <string name="st_01bc74ef1a9fcefc2105b631e8b43642">Přiřazuje speciální funkci nebo parametr vybranému kanálu.\n\n<b>Číslování kanálů nemusí odpovídat číslování vysílače!</b></string>
+    <string name="st_be0178bccc3f39814bb2189b6892cd59"><b>Typ modelu</b>\n\n- Letadlo: R/C letadlo: 1 až 2 křidélková serva, 1 až 2 výškovková, 1 směrovkové.\n- Samokřídlo: 2 serva elevon.</string>
+    <string name="st_55e41a1ec9acdf826f1fd735e010af69"><b>Obnovovací frekvence serv.</b>\n\n- Pro analogová serva nastavte 50 - 60Hz.\n- Pro digitální nastavte 200 - 333Hz.\n\n<b>Vždy nastavte dle specifikací serv.</b></string>
+    <string name="st_a1bfb869c35e4b3c4be7753ce4a9ac68">Směr pohybu serva CH0</string>
+    <string name="st_3d98204af0b34549c6dcf4c1d529704c"><b>Udává rozsah dráhy serv - křidélka/elevon.</b>\n\n- Přidejte tento parametr, jak nejvíce je to možné.\n- Opatrně kontrolujte, zda nedochází k nárazu serv v žádné poloze!\n\n<i>Rozsah: 32 - 255</i></string>
+    <string name="st_eefb8fb30a64b8a4ab233c2883ce02c8"><b>Udává rozsah dráhy serv - výškovka.</b>\n\n- Přidejte tento parametr, jak nejvíce je to možné.\n- Opatrně kontrolujte, zda nedochází k nárazu serv v žádné poloze!\n\n<i>Rozsah: 32 - 255</i></string>
+    <string name="st_4d92425eda724b02072229e82293f77e"><b>Udává rozsah dráhy serv - směrovka.</b>\n\n- Přidejte tento parametr, jak nejvíce je to možné.\n- Opatrně kontrolujte, zda nedochází k nárazu serv v žádné poloze!\n\n<i>Rozsah: 32 - 255</i></string>
+    <string name="st_601498b7e1c0fba76fee62a60478471a"><b>Udává zisk pro osu výškovky.</b>\n\n- Nejčastěji 40 - 60% pro optimální funkci.\n\n<i>Rozsah: 0 - 100%</i></string>
+    <string name="st_5ab47d14dc12acefbc3e181de2427dff"><b>Udává zisk pro osu křidélek.</b>\n\n- Nejčastěji 40 - 60% pro optimální funkci.\n\n<i>Rozsah: 0 - 100%</i></string>
+    <string name="st_d1d640d4588f3eb200d6c002e8c9b545"><b>Udává zisk pro osu směrovky.</b>\n\n- Nejčastěji 40 - 60% pro optimální funkci.\n\n<i>Rozsah: 0 - 100%</i></string>
+    <string name="st_dc6f005396ab46ce23d06da3f7f4bf3e"><b>Funkce aktivována, pokud je obecný zisk záporný</b>\n\nVypnuto - Rate režim gyra.\nZáchrana - záchranný režim a HL gyro.\nStabilizace - stabilizace a HL gyro.</string>
+    <string name="st_8cef7374bccca77f76a7213b97779035"><b>Udává míru ovlivnění směru pro stabilizaci.</b>\n\n- Nízké hodnoty jsou vhodné začátečníkům.\n- Vyšší hodnoty jsou vhodné pro trénink akrobacie.\n\n<i>Rozsah: 0 - 5</i></string>
+    <string name="st_75684deb3190951f8f63f0e1e6233eb2"><b>Míra stoupání během režimu záchrany.</b>\n\n<i>Rozsah: 0 - 100%</i></string>
+    <string name="st_474b3725388d3b01186475b6b141971d"><b>Rychlost odezvy, resp. míra přímého propojení páček křidélek/výškovy/směrovky.</b>\n\n- Přidejte pro přímější pocit propojení.\n- Uberte pro plynulejší chování modelu.\n\n<i>Rozsah: 1 - 12</i></string>
+    <string name="st_e4c7dea28238dd29bb3ba1ed259234e7"><b>Funkce diferenciace křidélek</b>\n\n- V případě, že model nedrží přesně směr letu během rotace v ose křidélek, zvyšte hodnotu.\n\n<i>Rozsah: 0 - 100%</i></string>
+    <string name="st_0537cec7b4f920875b492d8c584a5941"><b>Udává spodní limit rozsahu plynu.</b>\n\n- Lze použít pro srovnání rozsahu s interním rozsahem regulátoru otáček.\n- Pro spalovací motory nastavte limit na nejnižší možnou hodnotu serva plynu.\n- Funguje jako subtrim ve vysílači.\n- Hodnoty pro ESC v návodu výrobce.\n\n<i>Rozsah: 700 - 1300</i></string>
+    <string name="st_135893817545e95de30407e3290aa1a7"><b>Udává horní limit rozsahu plynu.</b>\n\n- Lze použít pro srovnání rozsahu s interním rozsahem regulátoru otáček.\n- Pro spalovací motory nastavte limit na nejvyšší možnou hodnotu serva plynu.\n- Hodnoty pro ESC v návodu výrobce.\n\n<i>Rozsah: 1700 - 2300</i></string>
+    <string name="st_4091a27c19d07cdda00d8668e0ce5f8b"><b>Udává směr plynu.</b>\n\n- Většinou se využívá pouze pro spalovací motory.\n- Reverzujte pro správný směr pohybu serva plynu.</string>
+    <string name="st_dc8b18df5075c37223e5f077ab8afc73"><b>Udává obecný zisk.</b>\n\n- Je aktivní pokud je funkce Obecný zisk nepřiřazena.\n- Znásobuje všechny zisky senzoru.\n- Záporná hodnota aktivuje vybranou funkci v záložce Stabi.\n\n<i>Rozsah: -100 - +100%</i></string>
+    <string name="st_3058aab0e8a914c050be956df1ca5d15"><b>Neutrální impuls serv.</b>\n\n- Běžně 1520.</string>
     <!--  END AUTO GENERATE STUB -->
 
 
@@ -622,6 +724,11 @@
 
     <string name="in_transmitter">﻿Ve vysílači</string>
     <string name="cant_send_data">Data nebyla odeslána</string>
+
+    <string name="down">dolů</string>
+    <string name="up">nahoru</string>
+
+    <string name="invalid_ip_format">IP nemá platný formát</string>
 
     <string name="downloading">Stahuji</string>
     <string name="file_downloaded">Soubor byl stažen</string>
@@ -641,11 +748,15 @@
     <string name="thr_reverse_warning">Po stisku tlačítka OK bude výstup plynu reverzován. Může se roztočit motor!</string>
     <string name="fw_type_not_match_heli">Firmware ve vaši jednotce je určen pro modely letadel. Je nutné nahrát firmware určený pro helikoptéry.</string>
     <string name="fw_type_not_match_aero">Firmware ve vaši jednotce je určen pro modely helikoptér. Je nutné nahrát firmware určený pro letadla.</string>
+
+    <string name="profile_type_not_match_heli">Zvolený profil byl vytvořen programem Spirit Aero určeným pro modely letadel! Profil bude ignorován.</string>
+    <string name="profile_type_not_match_aero">Zvolený profil byl vytvořen programem Spirit Settings určeným pro modely helikoptér! Profil bude ignorován.</string>
+
     <string name="governor_mode">Režim</string>
     <string name="factory_settings">Tovární nastavení</string>
     <string name="factory_settings_confirm">Přejete si resetovat jednotku do továrního nastavení?</string>
     <string name="factory_settings_done">Resetování do továrního nastavení je hotovo.</string>
-    <string name="receiver_was_change">Typ přijímače byl změněn.\n\nPro uplatnění změny, uložte nastavení a zapněte jednotku znovu.</string>
+    <string name="receiver_was_change">Typ přijímače byl změněn.\n\nPro uplatnění změny uložte nastavení a zapněte jednotku znovu.</string>
     <string name="profile_not_match">Zvolený profil byl vytvořen odlišnou verzí software (%1$s)! Prosím zkontrolujte hodnoty všech parametrů.</string>
     <string name="acro_delay">Prodleva Akro</string>
     <string name="rpm_senzor_filter">Filtr senzoru otáček</string>
@@ -668,14 +779,20 @@
     <string name="log_event_save_failed">Data nejsou k dispozici</string>
     <string name="log_event_govsignal">Senzoru otáček vykazuje velký šum</string>
     <string name="col_direction">Směr kolektivu</string>
-    <string name="app_name">Spirit Settings</string>
     <string name="wifi">Wifi</string>
     <string name="wifi_ip">IP</string>
     <string name="wifi_port">Port</string>
     <string name="left">Levý</string>
     <string name="right">Pravý</string>
+
+    <string name="to_left">vlevo</string>
+    <string name="to_right">vpravo</string>
+
+    <string name="sensor_gain">Zisk senzoru</string>
+    <string name="global_sensor_gain">Obecný zisk senzoru</string>
+    <string name="global_gain">Obecný zisk</string>
+
     <string name="short_title">Spirit</string>
-    <string name="full_app_name">Spirit Settings</string>
     <string name="function">Specialní funkce</string>
 
     <string name="function_1">Funkce 1</string>
@@ -689,9 +806,35 @@
     <string name="in_flight">In-Flight</string>
     <string name="functionColision">Tato funkce je již přiřazena!</string>
     <string name="allowedPWMChannels">Pro typ přijímače PWM lze přiřadit pouze 5. kanál.</string>
+    <string name="allowedPWMChannels5">Pro typ přijímače PWM lze přiřadit pouze 5. kanál.</string>
+    <string name="allowedPWMChannels6">Pro typ přijímače PWM lze přiřadit pouze 6. kanál.</string>
     <string name="allowedPWMChannelsFunctionPro">Pro typ přijímače PWM lze přiřadit pouze 5. a 7. kanál.</string>
     <string name="allowedPPMChannels">Pro typ přijímače PPM lze přiřadit pouze 5., 7. a 8. kanál.</string>
+
+    <string name="aeroAllowedPWMChannelsPro">Pro typ přijímače PWM lze přiřadit pouze 5., 6. a 7. kanál.</string>
+    <string name="aeroAllowedPWMChannels">Pro typ přijímače PWM lze přiřadit pouze 5. a 6. kanál.</string>
+    <string name="aeroAllowedPPMChannels">Pro typ přijímače PPM lze přiřadit pouze 5., 6., 7. a 8. kanál.</string>
+
+    <string name="aeroNotAllowedForFlyingWing">Tento parametr není dostupný pro samokřídlo!</string>
+
     <string name="onlyPro">Tato funkce je dostupná pouze u Spirit Pro.</string>
     <string name="log_event_govsignalfailed">Výpadek dat senzoru otáček</string>
     <string name="autorotation_bailout_rate">Prodleva Autorotace Bailout</string>
+
+    <string name="trims">Trimy</string>
+    
+    <string name="aero_trim_help">
+        &lt;p&gt;
+            &lt;b&gt;Trimy&lt;/b&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            Pro nastavení trimů je nutné přiřadit speciální funkci - &lt;i&gt;F: Nastavení trimů&lt;/i&gt; v okně kanály.
+            Poté proveďte trimovací let s obecným ziskem na 0%. Ke trimování využijte trimů vysílače tak, aby model nechtěně nezatáčel.
+            Po přistání aktivujte přiřazenou funkci, což uloží hodnoty trimů do paměti. Nakonec vraťte trimy vysílače zpět do středu a
+            jednotku spusťte znovu.
+        &lt;/p&gt;
+        &lt;p&gt;
+            Hodnoty zobrazují odchylku serv od neutrální pozice.
+        &lt;p&gt;
+    </string>
 </resources>

@@ -2,7 +2,7 @@
 <resources>
     <string name="xxx">xxxx</string>
     <string name="settings_name_space">settings_name_space</string>
-    <string name="author_name">Spirit System mobile settings\nPetr Čada - error414@error414.com\nTomáš Jędrzejek - tomasj@spirit-system.com\nTomáš Neuberg\nDaniel Matloch - danielm@spirit-system.com\n \n build: 02.11.2016-release</string>
+    <string name="author_name">Spirit System mobile settings\nPetr Čada - error414@error414.com\nTomáš Jędrzejek - tomasj@spirit-system.com\nTomáš Neuberg\nDaniel Matloch - danielm@spirit-system.com\n \n build: 30.01.2017-devel</string>
     <string name="author">Author</string>
     <string name="credits">Credits</string>
     <string name="ok">Ok</string>
@@ -58,13 +58,30 @@
            In case, that BEC is not sufficient, you can observe servo weakness and even the unit can reset itself if Voltage will drop under 1.9V.
         &lt;/p&gt;
         &lt;p&gt;
-            &lt;b&gt;We highly recommend to unplug the motor or to dismount the blades. It may cause unpredictable behavior!&lt;br/&gt;
+            &lt;b&gt;We highly recommend to unplug the motor or to dismount the blades. It may cause unpredictable behavior!
             Make sure that any servo is not too hot during this test. If so you must turn the test off as soon as possible.&lt;/b&gt;
         &lt;/p&gt;
     </string>
+
+     <string name="aero_bec_tester_note">
+         &lt;p&gt;
+             &lt;b&gt;BEC Tester&lt;/b&gt; is usefull utility for checking whether your BEC
+             is able to stand high current load. This utility will move fast with all the servos for
+             20 seconds.
+         &lt;/p&gt;
+         &lt;p&gt;
+             In case, that BEC is not sufficient, you can observe servo weakness
+             and even the unit can reset itself if Voltage will drop under 1.9V.
+         &lt;/p&gt;
+         &lt;p&gt;
+             &lt;b&gt;We highly
+             recommend to unplug the motor or to dismount a propeler. It may cause unpredictable behavior!&lt;/b&gt;&lt;b&gt; Make
+             sure that any servo is not too hot during this test. If so you must turn the test off as soon as possible.&lt;/b&gt;
+         &lt;/p&gt;
+    </string>
     <string name="pitch_pump">Pitch Pump Booster</string>
     <string name="stabi_col_warning_header">Warning</string>
-    <string name="stabi_col_warning">Value between -30% to 30% may be too low!</string>
+    <string name="stabi_col_warning">Value between 0% to 30% may be too low!</string>
 
     <string name="senzor_button_text">Sensor</string>
     <string name="senzor_senzivity_button_text">Sensitivity</string>
@@ -95,6 +112,10 @@
     <string name="frequency">Frequency</string>
     <string name="pulse">Pulse</string>
     <string name="rudder">Rudder</string>
+    <string name="flaps">Flaps</string>
+    <string name="rescue_inclination">Rescue inclination</string>
+
+    <string name="invalid_ip_format">Invalid IP format</string>
 
     <string name="servo_rudder">Rudder (CH4)</string>
 
@@ -103,13 +124,23 @@
     <string name="servo_ch0">Elevator 2 (CH0)</string>
     <string name="servo_ch3">Aileron (CH3)</string>
 
+    <string name="aero_servo_ch1">Aileron (CH1)</string>
+    <string name="aero_servo_ch2">Elevator (CH2)</string>
+    <string name="aero_servo_ch3">Aileron (CH3)</string>
+    <string name="aero_servo_ch4">Rudder (CH4)</string>
+    <string name="aero_servo_ch0">Elevator (CH0)</string>
+
     <string name="servo_ch1_inverted">Aileron (CH1)</string>
     <string name="servo_ch3_inverted">Pitch (CH3)</string>
+
+    <string name="aero_servo_ch1_inverted">Elevon (CH1)</string>
+    <string name="aero_servo_ch3_inverted">Elevon (CH3)</string>
 
     <string name="ch1" translatable="false">CH1</string>
     <string name="ch2" translatable="false">CH2</string>
     <string name="ch3" translatable="false">CH3</string>
     <string name="ch4" translatable="false">CH4</string>
+    <string name="ch0" translatable="false">CH0</string>
     <string name="servo_travel_correction">Servo Travel Correction</string>
     <string name="reg_p">P</string>
     <string name="reg_i">I</string>
@@ -232,14 +263,14 @@
     </string-array>
 
     <string-array name="aero_position_values">
-        <item>Horizontal (0 deg)</item>
-        <item>Horizontal (180 deg)</item>
-        <item>Horizontal (0 deg + inverted)</item>
-        <item>Horizontal (180 deg + inverted)</item>
-        <item>Vertical (0 deg - left side)</item>
-        <item>Vertical (180 deg - left side)</item>
-        <item>Vertical (0 deg - right side)</item>
-        <item>Vertical (180 deg - right side)</item>
+        <item>Horizontal (0°)</item>
+        <item>Horizontal (180°)</item>
+        <item>Horizontal (0° + inverted)</item>
+        <item>Horizontal (180° + inverted)</item>
+        <item>Vertical (0° - left side)</item>
+        <item>Vertical (180° - left side)</item>
+        <item>Vertical (0° - right side)</item>
+        <item>Vertical (180° - right side)</item>
     </string-array>
 
     <string-array name="mix_values">
@@ -270,6 +301,10 @@
         <item>Futaba S-BUS</item>
         <item>Jeti EX-BUS</item>
         <item>SRXL/SUMD</item>
+    </string-array>
+    <string-array name="aero_model_values">
+        <item>Plane</item>
+        <item>Flying Wing</item>
     </string-array>
     <string-array name="cyclic_servo_reverse_values">
         <item>No Reverse</item>
@@ -322,6 +357,8 @@
 
     <string-array name="aero_function_values">
         <item>Disabled</item>
+        <item>Rescue (Normal)</item>
+        <item>Rescue (Acro)</item>
         <item>Stabilisation (Normal)</item>
         <item>Stabilisation (Acro)</item>
     </string-array>
@@ -380,6 +417,23 @@
         <item>F: Spectrum Analysis (Z)</item>
     </string-array>
 
+    <string-array name="aero_general_function_values">
+        <item>unassigned</item>
+        <item>P: Sensor Gain - Aileron</item>
+        <item>P: Sensor Gain - Elevator</item>
+        <item>P: Sensor Gain - Rudder</item>
+        <item>P: Rescue inclination</item>
+        <item>P: Direction control rate</item>
+        <item>P: Feed Forward</item>
+        <item>P: Stick Deadband</item>
+        <item>P: Aileron Differential</item>
+        <item>F: Output to CH0</item>
+        <item>F: Spectrum Analysis (X)</item>
+        <item>F: Spectrum Analysis (Y)</item>
+        <item>F: Spectrum Analysis (Z)</item>
+        <item>F: Set trim</item>
+    </string-array>
+
     <string-array name="general_function_channels_values">
         <item>unassigned</item>
         <item>5. channel</item>
@@ -388,6 +442,18 @@
         <item>9. channel</item>
         <item>10. channel</item>
     </string-array>
+
+    <string-array name="aero_general_function_channels_values">
+        <item>unassigned</item>
+        <item>5. channel</item>
+        <item>6. channel</item>
+        <item>7. channel</item>
+        <item>8. channel</item>
+        <item>9. channel</item>
+        <item>10. channel</item>
+    </string-array>
+
+    <string name="aileron_diferential">Aileron Differential</string>
 
     <string name="location">Location</string>
     <string name="language">Language</string>
@@ -407,6 +473,7 @@
     <string name="version_not_match">Firmware version does not match with the software version.\n\n Firmware: %1$s\n Software: %2$s</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+
     <string name="log_event_ok">Good Health Message</string>
     <string name="log_event_cal">Calibration Finished</string>
     <string name="log_event_cycring">Cyclic Ring Activated</string>
@@ -417,6 +484,18 @@
     <string name="log_event_lowvolt">Power Voltage is low</string>
     <string name="log_event_rxcorrupt">Received Frame was Corrupted</string>
     <string name="log_governor">Governor was Engaged</string>
+
+    <string name="aero_log_event_ok">Good Health Message</string>
+    <string name="aero_log_event_ail">Aileron Limit Reached</string>
+    <string name="aero_log_event_ele">Elevator Limit Reached</string>
+    <string name="aero_log_event_rud">Rudder Limit Reached</string>
+    <string name="aero_log_event_vib">Vibration Level is very high</string>
+    <string name="aero_log_event_hang">Main Loop Hang Occured</string>
+    <string name="aero_log_event_lost">Receiver Signal Lost</string>
+    <string name="aero_log_event_power_low">Power Voltage is low</string>
+    <string name="aero_log_event_receiver_corrupted">Received Frame was Corrupted</string>
+
+
     <string name="not_log_for_save">None log to save</string>
     <string name="save_log">Save log</string>
     <string name="pdf_title">Flight log</string>
@@ -470,6 +549,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="no_diff">no difference</string>
+    <string name="limit_range_elevon">Elevon range</string>
 
     <string name="changelog_full_title">Change Log</string>
     <string name="changelog_title">What\'s New</string>
@@ -576,7 +656,25 @@
     <string name="st_3a2a8ea65f77548d39ba67c407ba27db"><b>Tick the option in case of a Trailing Edge rotor heads or heads with a mixing arms.</b>\n\n- In the most cases the option is unticked (not reversed).</string>
     <string name="st_96e10343a6db292f2b80abd5ade2f377">Assign function to a selected channel.\n\nIt is important that channel movement correspond with your transmitter.\n\n<b>Channel numbering may not match with your transmitter!</b></string>
     <string name="st_010ad6eeed1c38b101d23cfceec5abdf"><b>Autorotation Bailout rate</b>\n\n- Period in which requested head speed is recovered when Autorotation Bailout was used.\n- Usually configured to 3.\n\n<i>Range: 1 - 6 seconds</i></string>
-    <string name="st_01bc74ef1a9fcefc2105b631e8b43642">Assign special function or parameter to a selected channel.\n\n<b>Channel numbering may not match with your transmitter!</b></string>
+    <string name="st_be0178bccc3f39814bb2189b6892cd59"><b>Model Type</b>\n\n- Plane: R/C plane with 1-2 aileron servo, 1-2 elevator, 1 rudder.\n- Flying Wing: 2 elevon servos.</string>
+    <string name="st_55e41a1ec9acdf826f1fd735e010af69"><b>Servo refresh rate frequency</b>\n\n- For analog servos set 50 - 60Hz.\n- For digital servos 200 - 333Hz.\n\n<i>Always verify with servo datasheet.</i></string>
+    <string name="st_a1bfb869c35e4b3c4be7753ce4a9ac68">Movement direction of the CH0 servo</string>
+    <string name="st_3d98204af0b34549c6dcf4c1d529704c"><b>Specifies allowed travel range for aileron/elevon.</b>\n\n- Increase this parameter as much as possible.\n- Carefully check for any binding!\n\n<i>Range: 32 - 255</i></string>
+    <string name="st_eefb8fb30a64b8a4ab233c2883ce02c8"><b>Specifies allowed travel range for elevator.</b>\n\n- Increase this parameter as much as possible.\n- Carefully check for any binding!\n\n<i>Range: 32 - 255</i></string>
+    <string name="st_4d92425eda724b02072229e82293f77e"><b>Specifies allowed travel range for rudder.</b>\n\n- Increase this parameter as much as possible.\n- Carefully check for any binding!\n\n<i>Range: 32 - 255</i></string>
+    <string name="st_601498b7e1c0fba76fee62a60478471a"><b>Specifies Sensor Gain for Elevator.</b>\n\n- Mostly from 40 to 60% for optimal results.\n\n<i>Range: 0 - 100%</i></string>
+    <string name="st_5ab47d14dc12acefbc3e181de2427dff"><b>Specifies Sensor Gain for Aileron.</b>\n\n- Mostly from 40 to 60% for optimal results.\n\n<i>Range: 0 - 100%</i></string>
+    <string name="st_d1d640d4588f3eb200d6c002e8c9b545"><b>Specifies Sensor Gain for Rudder.</b>\n\n- Mostly from 40 to 60% for optimal results.\n\n<i>Range: 0 - 100%</i></string>
+    <string name="st_dc6f005396ab46ce23d06da3f7f4bf3e"><b>Function activated when Global gain is negative</b>\n\nDisabled - Rate gyro mode.\nRescue - rescue mode with HL gyro.\nStabilisation - stabilisation mode with HL gyro.</string>
+    <string name="st_8cef7374bccca77f76a7213b97779035"><b>Specifies a rate of direction change for stabilization.</b>\n\n- Low values are suitable for beginners.\n- Higher values are suitable for acrobatics learning.\n\n<i>Range: 0 - 5</i></string>
+    <string name="st_75684deb3190951f8f63f0e1e6233eb2"><b>Inclination applied during rescue activation.</b>\n\n<i>Range: 0 - 100%</i></string>
+    <string name="st_474b3725388d3b01186475b6b141971d"><b>Aggressiveness of aileron/elevator/rudder stick response.</b>\n\n- Increase for more direct feel.\n- Decrease for smooth behavior.\n\n<i>Range: 1 - 12</i></string>
+    <string name="st_e4c7dea28238dd29bb3ba1ed259234e7"><b>Aileron Differential function</b>\n\n- In case that direction during aileron rotation is not held precisely increase the value.\n\n<i>Range: 0 - 100%</i></string>
+    <string name="st_0537cec7b4f920875b492d8c584a5941"><b>Specifies bottom limit of the throttle range.</b>\n\n- Can be used to match preconfigured throttle range of the ESC.\n- In case of a combustion motor set the limit for the lowest position of the throttle servo horn.\n- Behaves similarly as a subtrim function.\n- Check documentation of your ESC to get correct value.\n\n<i>Range: 700 - 1300</i></string>
+    <string name="st_135893817545e95de30407e3290aa1a7"><b>Specifies upper limit of the throttle range.</b>\n\n- Can be used to match preconfigured throttle range of the ESC.\n- In case of a combustion motor set the limit for the highest position of the throttle servo horn.\n- Check documentation of your ESC to get correct value.\n\n<i>Range: 1700 - 2300</i></string>
+    <string name="st_4091a27c19d07cdda00d8668e0ce5f8b"><b>Specifies direction of the throttle.</b>\n\n- Mostly used only for combustion motors.\n- Reverse for the correct throttle servo movement.</string>
+    <string name="st_dc8b18df5075c37223e5f077ab8afc73"><b>Specifies Global Gyro Gain.</b>\n\n- Is active if Global Gain function is unassigned.\n- Multiplicator for all Sensor gains.\n- Negative value can activate selected Stabi/Function.\n\n<i>Range: -100 - +100%</i></string>
+    <string name="st_3058aab0e8a914c050be956df1ca5d15"><b>Servo center impulse</b>\n\n- Usually 1520.</string>
     <!--  END AUTO GENERATE STUB -->
 
     <string name="downloading">Downloading</string>
@@ -588,12 +686,21 @@
     <string name="governor_thr_max">Max</string>
     <string name="governor_gear_settings">Gear Settings</string>
     <string name="governor_ratio">Gear Ratio</string>
-    <string name="governor_divider">Sensing Divider</string>
+    <string name=   "governor_divider">Sensing Divider</string>
     <string name="governor_rpm_max">Max. Head Speed (RPM)</string>
     <string name="governor_request_rpm">Requested RPM</string>
     <string name="governor_current_rpm">Current RPM</string>
     <string name="no_internet_connection">No internet connection</string>
     <string name="governor_thr_reverse">Throttle Reverse</string>
+
+    <string name="down">Down</string>
+    <string name="up">Up</string>
+    <string name="to_left">Left</string>
+    <string name="to_right">Right</string>
+
+    <string name="sensor_gain">Sensor Gain</string>
+    <string name="global_sensor_gain">Global Sensor Gain</string>
+    <string name="global_gain">Global Gain</string>
 
     <string name="cant_send_data">Data was not sent</string>
     <string name="download_error">Download error</string>
@@ -613,11 +720,18 @@
     <string name="left" >Left</string>
     <string name="right">Right</string>
 
-    <string name="limit_range_ail" translatable="false">Aileron Range</string>
-    <string name="limit_range_ele" translatable="false">Elevator Range</string>
-    <string name="limit_range_rud" translatable="false">Rudder Range</string>
+    <string name="thr_range">Throttle Range</string>
+    <string name="thr_reverse">Throttle Reverse</string>
+
+    <string name="limit_range_ail">Aileron Range</string>
+    <string name="limit_range_ele">Elevator Range</string>
+    <string name="limit_range_rud">Rudder Range</string>
     <string name="fw_type_not_match_heli">Firmware in the unit is for airplane models. You have to flash Spirit firmware for helicopters.</string>
     <string name="fw_type_not_match_aero">Firmware in the unit is for helicopter models. You have to flash Spirit firmware for airplanes.</string>
+
+    <string name="profile_type_not_match_heli">Selected profile was created with Spirit Aero software for plane models! Profile will be ignored.</string>
+    <string name="profile_type_not_match_aero">Selected profile was created with Spirit Settings software for helicopter models! Profile will be ignored.</string>
+
     <string name="governor_mode">Mode</string>
     <string name="factory_settings">Factory settings</string>
     <string name="factory_settings_confirm">Do you want to reset the unit to factory settings?</string>
@@ -666,12 +780,37 @@
     <string name="in_flight">In-Flight</string>
     <string name="functionColision">This function is already assigned!</string>
     <string name="allowedPWMChannels">For PWM connection type only 5th channel can be used.</string>
+    <string name="allowedPWMChannels5">For PWM connection type only 5th channel can be used.</string>
+    <string name="allowedPWMChannels6">For PWM connection type only 6th channel can be used.</string>
     <string name="allowedPWMChannelsFunctionPro">For PWM connection type only 5th and 7th channel can be used.</string>
+
+    <string name="aeroAllowedPWMChannelsPro">For PWM receiver type only 5th, 6th and 7th channel can be used.</string>
+    <string name="aeroAllowedPWMChannels">For PWM receiver type only 5th and 6th channel can be used.</string>
+    <string name="aeroAllowedPPMChannels">For PPM connection type only 5th, 6th, 7th, 8th channel can be used.</string>
+
+    <string name="aeroNotAllowedForFlyingWing">This parameter is not available for Flying Wing!</string>
 
     <string name="allowedPPMChannels">For PPM connection type only 5th, 7th, 8th channel can be used.</string>
     <string name="onlyPro">This function is supported with Spirit Pro only</string>
     <string name="log_event_govsignalfailed">RPM Sensor data are lost</string>
 
     <string name="autorotation_bailout_rate">Autorotation Bailout rate</string>
+
+    <string name="trims">Trims</string>
+
+    <string name="aero_trim_help">
+        &lt;p&gt;
+            &lt;b&gt;Trims&lt;/b&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            To set the trims you have to assign the special function - &lt;i&gt;F: Set trim&lt;/i&gt; in the Channels window. Then fly with Global Gain at 0%, use your
+            transmitter trims to correct an unwanted movement. After landing activate the function, which will save the trims value. Then return the transmitter
+            trims back to the center and restart the unit to apply the trims.
+        &lt;/p&gt;
+        &lt;p&gt;
+            Displayed values respresent deflection from the center for the servo output.
+        &lt;/p&gt;
+    </string>
+
 
 </resources>
